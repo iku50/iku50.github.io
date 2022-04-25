@@ -57,7 +57,7 @@ paginate = 5
   enable = true
   repo = "iku50/iku50.github.io" ##换成自己得
   issueTerm = "title"
-  theme = "gruvbox-dark"
+  theme = "github-dark-orange"
 [params.twitter]
   # set Twitter handles for Twitter cards
   # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
