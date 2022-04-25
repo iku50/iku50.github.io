@@ -22,7 +22,7 @@ sudo snap install hugo 然后检查一下版本看是否安装成功。
 在本地创建一个新文件夹，用git把仓库克隆下来。
 git clone &amp;lt;仓库的url&amp;gt; 建站 1. 本地网站部署 在此目录下打开终端，敲入一下命令创建网站。
 hugo new site . #如果显示说此目录下已经有文件就在后面加个&amp;#39; --force&amp;#39;强制操作 在跳出来的信息中。
-Congratulations! Your new Hugo site is created in /home/rickeee/website/test.</description>
+Congratulations! Your new Hugo site is created in /home/rickeee/website/test.  Just a few more steps and you&amp;#39;re ready to go:  1. Download a theme into the same-named folder.</description>
       <content>&lt;h2 id=&#34;用hugogithub-pages托管阿里云ecs建站&#34;&gt;用hugo+github pages托管+阿里云ecs建站&lt;/h2&gt;
 &lt;p&gt;之前是用wordpress建站的，但实在受不了它每次超慢的线上操作，而且对md格式文件的支持也不够好。因此在查询资料后决定通过hugo建立静态博客。&lt;/p&gt;
 &lt;h3 id=&#34;前期准备&#34;&gt;前期准备&lt;/h3&gt;

@@ -3,19 +3,15 @@ languageCode = 'zh-cn'
 title = 'wiz website'
 theme = "terminal"
 paginate = 5
-summaryLength = 50
+	#summaryLength = 50
 [permalinks]
 	posts = "/:year/:month/:title"
-[[menu.navbar]]
-	name = "主页"
-	url = "/"
+
 [params]
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your index page (baseurl).
   contentTypeName = "posts"
-  author= "wizzz"
   
-  description = "一个个人博客网站"
   # ["orange", "blue", "red", "green", "pink"]
   themeColor = "orange"
 
