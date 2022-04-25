@@ -1,4 +1,4 @@
-baseURL = 'http://iku50.github.io'
+baseURL = 'http://blog.wizzz.ink'
 languageCode = 'en-us'
 title = 'wiz website'
 theme = "terminal"
