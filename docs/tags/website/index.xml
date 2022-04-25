@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Wizzz.ink</title>
-    <link>https://blog.wizzz.ink/</link>
-    <description>Recent content on Wizzz.ink</description>
+    <title>website on Wizzz.ink</title>
+    <link>https://blog.wizzz.ink/tags/website/</link>
+    <description>Recent content in website on Wizzz.ink</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>wizzz</copyright>
-    <lastBuildDate>Mon, 25 Apr 2022 14:41:07 +0800</lastBuildDate><atom:link href="https://blog.wizzz.ink/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Apr 2022 14:41:07 +0800</lastBuildDate><atom:link href="https://blog.wizzz.ink/tags/website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>建站！</title>
       <link>https://blog.wizzz.ink/2022/04/%E5%BB%BA%E7%AB%99/</link>
@@ -95,24 +95,6 @@ Congratulations! Your new Hugo site is created in /home/rickeee/website/test.</d
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new posts/&amp;lt;文章名.md&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建新文章。&lt;/p&gt;
 &lt;p&gt;写完后记得把文章头部的&lt;code&gt;draft&lt;/code&gt;属性设置为&lt;code&gt;false&lt;/code&gt;，不然就是默认为草稿不生成文章。&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://blog.wizzz.ink/about/</link>
-      <pubDate>Mon, 25 Apr 2022 13:37:09 +0800</pubDate>
-      
-      <guid>https://blog.wizzz.ink/about/</guid>
-      <description>AboutMe! 某华中科技大学计院学生。
-后端学习的入门者。
-电影爱好者。
-所以这个网站用来放一些学习笔记和电影短评。</description>
-      <content>&lt;h3 id=&#34;aboutme&#34;&gt;AboutMe!&lt;/h3&gt;
-&lt;p&gt;某华中科技大学计院学生。&lt;/p&gt;
-&lt;p&gt;后端学习的入门者。&lt;/p&gt;
-&lt;p&gt;电影爱好者。&lt;/p&gt;
-&lt;p&gt;所以这个网站用来放一些学习笔记和电影短评。&lt;/p&gt;
 </content>
     </item>
     

@@ -5,7 +5,28 @@
     <link>https://blog.wizzz.ink/tags/</link>
     <description>Recent content in Tags on Wizzz.ink</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>wizzz</copyright><atom:link href="https://blog.wizzz.ink/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <copyright>wizzz</copyright>
+    <lastBuildDate>Mon, 25 Apr 2022 14:41:07 +0800</lastBuildDate><atom:link href="https://blog.wizzz.ink/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hugo</title>
+      <link>https://blog.wizzz.ink/tags/hugo/</link>
+      <pubDate>Mon, 25 Apr 2022 14:41:07 +0800</pubDate>
+      
+      <guid>https://blog.wizzz.ink/tags/hugo/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>website</title>
+      <link>https://blog.wizzz.ink/tags/website/</link>
+      <pubDate>Mon, 25 Apr 2022 14:41:07 +0800</pubDate>
+      
+      <guid>https://blog.wizzz.ink/tags/website/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
   </channel>
 </rss>

@@ -1,14 +1,21 @@
 baseURL = 'https://blog.wizzz.ink/'
-languageCode = 'en-us'
+languageCode = 'zh-cn'
 title = 'wiz website'
 theme = "terminal"
 paginate = 5
-
+summaryLength = 50
+[permalinks]
+	posts = "/:year/:month/:title"
+[[menu.navbar]]
+	name = "主页"
+	url = "/"
 [params]
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your index page (baseurl).
   contentTypeName = "posts"
-
+  author= "wizzz"
+  
+  description = "一个个人博客网站"
   # ["orange", "blue", "red", "green", "pink"]
   themeColor = "orange"
 
@@ -43,7 +50,7 @@ paginate = 5
   # oneHeadingSize = true # default
 
   # whether to show a page's estimated reading time
-  # readingTime = false # default
+  readingTime = true # default
 
   # whether to show a table of contents
   # can be overridden in a page's front-matter
@@ -52,7 +59,6 @@ paginate = 5
   # set title for the table of contents
   # can be overridden in a page's front-matter
   # TocTitle = "Table of Contents" # default
-
 
 [params.twitter]
   # set Twitter handles for Twitter cards
@@ -78,7 +84,7 @@ paginate = 5
     missingBackButtonLabel = "Back to home page"
 
     [languages.en.params.logo]
-      logoText = "Terminal"
+      logoText = "Wizzz.ink"
       logoHomeLink = "/"
 
     [languages.en.menu]
@@ -86,7 +92,3 @@ paginate = 5
         identifier = "about"
         name = "About"
         url = "/about"
-      [[languages.en.menu.main]]
-        identifier = "showcase"
-        name = "Showcase"
-        url = "/showcase"

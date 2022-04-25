@@ -2,13 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.wizzz.ink/tags/hugo/</loc>
+    <lastmod>2022-04-25T14:41:07+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/posts/</loc>
+    <lastmod>2022-04-25T14:41:07+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/tags/</loc>
+    <lastmod>2022-04-25T14:41:07+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/tags/website/</loc>
+    <lastmod>2022-04-25T14:41:07+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/</loc>
+    <lastmod>2022-04-25T14:41:07+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/2022/04/%E5%BB%BA%E7%AB%99/</loc>
+    <lastmod>2022-04-25T14:41:07+08:00</lastmod>
+  </url><url>
     <loc>https://blog.wizzz.ink/about/</loc>
     <lastmod>2022-04-25T13:37:09+08:00</lastmod>
   </url><url>
     <loc>https://blog.wizzz.ink/categories/</loc>
-  </url><url>
-    <loc>https://blog.wizzz.ink/tags/</loc>
-  </url><url>
-    <loc>https://blog.wizzz.ink/</loc>
   </url>
 </urlset>
