@@ -5,6 +5,7 @@ draft: false
 description: "本文用来展示用hugo等工具建站的流程"
 author: "[Wizzz]"
 tags: ["hugo","website"]
+
 ---
 
 ## 用hugo+github pages托管+阿里云ecs建站
@@ -154,3 +155,4 @@ hugo new posts/<文章名.md>
 创建新文章。
 
 写完后记得把文章头部的`draft`属性设置为`false`，不然就是默认为草稿不生成文章。
+

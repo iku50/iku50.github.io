@@ -53,7 +53,11 @@ paginate = 5
   # set title for the table of contents
   # can be overridden in a page's front-matter
   # TocTitle = "Table of Contents" # default
-
+[params.utteranc]
+  enable = false
+  repo = "iku50/iku50.github.io" ##换成自己得
+  issueTerm = "title"
+  theme = "gruvbox-dark"
 [params.twitter]
   # set Twitter handles for Twitter cards
   # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
