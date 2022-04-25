@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Go笔记1 :: Wizzz.ink</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="go笔记1：简介，结构，基础语法，数据类型与变量" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.wizzz.ink/posts/gonote1/" />
+
+
+
+
+<link rel="stylesheet" href="https://blog.wizzz.ink/assets/style.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="https://blog.wizzz.ink/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="https://blog.wizzz.ink/img/favicon/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="[Wizzz]" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Go笔记1">
+<meta property="og:description" content="go笔记1：简介，结构，基础语法，数据类型与变量" />
+<meta property="og:url" content="https://blog.wizzz.ink/posts/gonote1/" />
+<meta property="og:site_name" content="Wizzz.ink" />
+
+  
+    <meta property="og:image" content="https://blog.wizzz.ink/img/favicon/orange.png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2022-04-25 23:27:12 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="orange">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Wizzz.ink
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://blog.wizzz.ink/posts/gonote1/">Go笔记1</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2022-04-25
+        
+      </span>
+    
+    
+      <span class="post-author">:: [Wizzz]</span>
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://blog.wizzz.ink/tags/golang/">golang</a>&nbsp;
+    
+  </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="go语言学习笔记1">go语言学习笔记1<a href="#go语言学习笔记1" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>哈，这是第一份，md格式有300行，我还有3000行存稿慢慢来。</p>
+<h2 id="简介与特性">简介与特性<a href="#简介与特性" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="特性">特性<a href="#特性" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<ul>
+<li>自动垃圾回收</li>
+<li>更丰富的内置类型</li>
+<li>函数多返回值</li>
+<li>错误处理</li>
+<li>匿名函数和闭包</li>
+<li>类型和接口</li>
+<li>并发编程</li>
+<li>反射</li>
+<li>语言交互性</li>
+</ul>
+<h2 id="第一个helloworld的go程序">第一个helloworld的go程序<a href="#第一个helloworld的go程序" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Hello,world!&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="go语言的基础结构">go语言的基础结构<a href="#go语言的基础结构" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>go的基础组成有以下几个部分</p>
+<ul>
+<li>
+<p>包声明
+必须在源文件非注释的第一行表明该文件属于哪个包，每个go程序都包含一个名为main的包，另</p>
+<ul>
+<li>文件名与包名没有直接关系，不需要将其定成同一个</li>
+<li>文件夹名与包名也没有直接关系</li>
+<li>同一个文件夹下的文件只能有一个包名</li>
+</ul>
+</li>
+<li>
+<p>引入包
+标识符以大写字母开头时，使用这种标识符的对象就可以被外部包的代码使用（只要客户端程序预先导入），这被称为导出，小写字母开头则对包外不可见，只在整个包里可见且可用</p>
+</li>
+<li>
+<p>函数
+main函数是每一个可执行程序所必须包含的，一般来说都是在启动后第一个执行的函数</p>
+</li>
+<li>
+<p>变量</p>
+</li>
+<li>
+<p>语句 &amp; 表达式</p>
+</li>
+<li>
+<p>注释</p>
+</li>
+</ul>
+<p><em>注：<code>{</code>不能放在单独一行</em></p>
+<h2 id="go语言基础语法">go语言基础语法<a href="#go语言基础语法" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>程序一般由关键字，常量，变量，运算符，类型和函数组成</p>
+<p>可能使用到大中小三种括号</p>
+<p>可能使用到 <code>,</code> <code>.</code> <code>;</code> <code>:</code> <code>...</code></p>
+<h3 id="go标记">go标记<a href="#go标记" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go程序可以由多个标记组成，可以是关键字，标识符，常量，字符串，符号等</p>
+<h3 id="行分隔符">行分隔符<a href="#行分隔符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>在go程序中，一行代表一个语句结束，不以分号为结尾，如果想将多个语句写在同一行，那就必须用分号区分，但在实际开发中此行为并不被鼓励。</p>
+<h3 id="注释">注释<a href="#注释" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>每一个包都应该有相关注释，单行注释使用 <code>//</code>，多行注释使用 <code>/*</code>和 <code>*/</code>不可以嵌套使用，一般用于包的文档描述或注释成块的代码</p>
+<h3 id="标识符">标识符<a href="#标识符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>标识符用来命名变量，类型，由字母，数字，下划线组成，第一个字符必须是字母或下划线</p>
+<h3 id="字符串连接">字符串连接<a href="#字符串连接" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>通过 <code>+</code> 来实现</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Google&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Runoob&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="关键字">关键字<a href="#关键字" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">关键字</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">break</td>
+<td style="text-align:center">default</td>
+<td style="text-align:center">func</td>
+<td style="text-align:center">interface</td>
+<td style="text-align:center">select</td>
+</tr>
+<tr>
+<td style="text-align:center">case</td>
+<td style="text-align:center">defer</td>
+<td style="text-align:center">go</td>
+<td style="text-align:center">map</td>
+<td style="text-align:center">struct</td>
+</tr>
+<tr>
+<td style="text-align:center">chan</td>
+<td style="text-align:center">else</td>
+<td style="text-align:center">goto</td>
+<td style="text-align:center">package</td>
+<td style="text-align:center">switch</td>
+</tr>
+<tr>
+<td style="text-align:center">const</td>
+<td style="text-align:center">fallthrough</td>
+<td style="text-align:center">if</td>
+<td style="text-align:center">range</td>
+<td style="text-align:center">type</td>
+</tr>
+<tr>
+<td style="text-align:center">continue</td>
+<td style="text-align:center">for</td>
+<td style="text-align:center">import</td>
+<td style="text-align:center">return</td>
+<td style="text-align:center">var</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">预定义</th>
+<th style="text-align:center">标识符</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">append</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">byte</td>
+<td style="text-align:center">cap</td>
+<td style="text-align:center">close</td>
+<td style="text-align:center">complex64</td>
+</tr>
+<tr>
+<td style="text-align:center">complex128</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">complex</td>
+<td style="text-align:center">copy</td>
+<td style="text-align:center">float32</td>
+<td style="text-align:center">float64</td>
+</tr>
+<tr>
+<td style="text-align:center">imag</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">int8</td>
+<td style="text-align:center">int16</td>
+<td style="text-align:center">int32</td>
+<td style="text-align:center">uint16</td>
+</tr>
+<tr>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">uint64</td>
+<td style="text-align:center">iota</td>
+<td style="text-align:center">len</td>
+<td style="text-align:center">make</td>
+<td style="text-align:center">new</td>
+</tr>
+<tr>
+<td style="text-align:center">nil</td>
+<td style="text-align:center">panic</td>
+<td style="text-align:center">print</td>
+<td style="text-align:center">println</td>
+<td style="text-align:center">real</td>
+<td style="text-align:center">recover</td>
+</tr>
+<tr>
+<td style="text-align:center">string</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">uint</td>
+<td style="text-align:center">uint8</td>
+<td style="text-align:center">int64</td>
+<td style="text-align:center">uintptr</td>
+</tr>
+</tbody>
+</table>
+<h3 id="空格">空格<a href="#空格" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>程序中变量的声明必须使用空格隔开</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">k</span> <span style="color:#66d9ef">int</span>
+</span></span></code></pre></div><p>在变量与运算符间加入空格可以使程序更美观</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">fruit</span> = <span style="color:#a6e22e">apples</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">oranges</span>
+</span></span></code></pre></div><h3 id="格式化字符串">格式化字符串<a href="#格式化字符串" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>使用 <code>fmt.Sprintf</code>格式化字符串并赋值给新串</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// %d 表示整型数字，%s 表示字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">stockcode</span>=<span style="color:#ae81ff">123</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">enddate</span>=<span style="color:#e6db74">&#34;2020-12-31&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span>=<span style="color:#e6db74">&#34;Code=%d&amp;endDate=%s&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">target_url</span>=<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#a6e22e">url</span>,<span style="color:#a6e22e">stockcode</span>,<span style="color:#a6e22e">enddate</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">target_url</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="标识符可见性">标识符可见性<a href="#标识符可见性" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>大写其他包就能访问，小写就是私有的</p>
+<p>若某函数公有，其返回值为某私有类型，函数是能正常调用且运行，但必须适用<code>:=</code>这样的操作符来自动识别变量类型</p>
+<p>这样在和其他人进行函数方法通信时，只需约定好接口就行，内部实现使用方是看不到的，隐藏了实现</p>
+<p>若在某个导出的结构体类型里，有一个未导出的字段那么该字段在其他包里无法初始化。</p>
+<p>此外，一个导出的类型，包含了一个未导出的方法也一样，无法进行访问</p>
+<p>若导出类型和未导出的类型相互嵌入，那么</p>
+<p>若外部类型被导出而其内部某类型未导出，那么就不能使用字面值直接初始化它，只能先定义外部类型变量后，就可以对里面内部类型被导出的字段用外部类型访问初始化，因为当内部类型被嵌入后，其字段被提升到了外部类型中，这样它就可以被访问</p>
+<p>若还想用<code>:=</code>那么字面值初始化时什么都不要做，因为内部类型未导出，所以不能使用字面值直接初始化内部类型里的字段，此外，内部类型未导出也意味着不能通过外部类型访问内部类型</p>
+<p>总之，<strong><code>.</code>操作符前面的部分导出了，<code>.</code>操作符后面的部分才有可能被访问；如果<code>.</code>前面的部分都没有导出，那么即使<code>.</code>后面的部分是导出的，也无法访问。</strong></p>
+<h2 id="数据类型">数据类型<a href="#数据类型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>go语言按类别有以下几种数据类型</p>
+<ol>
+<li>
+<p>布尔型
+只可以是true或false</p>
+<p>2.数字类型</p>
+<pre><code> int 和浮点型float32，float64，go支持整型和浮点型数字，并且支持复数，其中位的运算使用补码
+</code></pre>
+<p>3.字符串类型
+一串固定长度的字符连接的字符序列，由单个字节连接，使用utf-8识别unicode文本
+字符串类型在go里是个结构，由指向底层数组的指针和长度两部分组成，每部分8字节，所以字符串类型大小为16字节
+4.派生类型
+包括：</p>
+</li>
+</ol>
+<ul>
+<li>指针类型</li>
+<li>数组类型</li>
+<li>结构化类型</li>
+<li>channel类型</li>
+<li>函数类型</li>
+<li>切口类型</li>
+<li>切片类型</li>
+<li>接口类型</li>
+<li>map类型</li>
+</ul>
+<h3 id="数字类型">数字类型<a href="#数字类型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go也有基于架构的类型，如int，uint和uintptr</p>
+<h4 id="整型">整型<a href="#整型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<ol>
+<li>uint8</li>
+<li>uint16</li>
+<li>uint32</li>
+<li>uint64</li>
+<li>int8</li>
+<li>int16</li>
+<li>int32</li>
+<li>int64</li>
+</ol>
+<h4 id="浮点型">浮点型<a href="#浮点型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<ol>
+<li>float32</li>
+<li>float64</li>
+<li>complex64</li>
+<li>complex128</li>
+</ol>
+<h4 id="其他数字类型">其他数字类型<a href="#其他数字类型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<ol>
+<li>byte（类似uint8）</li>
+<li>rune（类似int32）</li>
+<li>uint（32或64位）</li>
+<li>int（和uint一样大小）</li>
+<li>uintptr（无符号整型，用于存放指针）</li>
+</ol>
+<h3 id="自定义类型">自定义类型<a href="#自定义类型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go支持自定义类型，比如后面说的结构体类型</p>
+<p>还有一个自定义类型的方法是基于一个现有类型创造新类型，也是使用type关键字</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Duration</span> <span style="color:#66d9ef">int64</span>
+</span></span></code></pre></div><p>这时虽然我们觉得这两个类型是一种类型，但对于go这种强类型语言，它们无法相互赋值</p>
+<h2 id="变量">变量<a href="#变量" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>变量名规则与其他语言一样，声明变量用var关键字</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#66d9ef">string</span> = <span style="color:#e6db74">&#34;Runoob&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">c</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">c</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="变量声明">变量声明<a href="#变量声明" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<h4 id="无初始化指定变量类型">无初始化指定变量类型<a href="#无初始化指定变量类型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">v_name</span> <span style="color:#a6e22e">v_type</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">v_name</span> = <span style="color:#a6e22e">value</span>
+</span></span></code></pre></div><p>这种情况时变量会默认为0值</p>
+<p>各项数据类型的零值：</p>
+<ul>
+<li>数值：0</li>
+<li>布尔：false</li>
+<li>字符串：“”（空字符串）</li>
+<li>指针，数组，图，函数，接口等：nil</li>
+</ul>
+<h4 id="根据值自行判断变量类型">根据值自行判断变量类型<a href="#根据值自行判断变量类型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">v_name</span> = <span style="color:#a6e22e">value</span>
+</span></span></code></pre></div><h4 id="已经声明过的变量不能用">已经声明过的变量不能用:=<a href="#已经声明过的变量不能用" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<p>会有编译错误
+:=实际上完成的是声明和赋值两个操作
+<code>intVal := 1</code>实际上就是</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">intVal</span> <span style="color:#66d9ef">int</span> 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">intVal</span> =<span style="color:#ae81ff">1</span> 
+</span></span></code></pre></div><h4 id="多变量声明">多变量声明<a href="#多变量声明" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">//类型相同多个变量, 非全局变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vname1</span>, <span style="color:#a6e22e">vname2</span>, <span style="color:#a6e22e">vname3</span> <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">vname1</span>, <span style="color:#a6e22e">vname2</span>, <span style="color:#a6e22e">vname3</span> = <span style="color:#a6e22e">v1</span>, <span style="color:#a6e22e">v2</span>, <span style="color:#a6e22e">v3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 这种因式分解关键字的写法一般用于声明全局变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vname1</span> <span style="color:#a6e22e">v_type1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vname2</span> <span style="color:#a6e22e">v_type2</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="值类型和引用类型">值类型和引用类型<a href="#值类型和引用类型" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>所有基本类型都属于值类型，使用这些变量直接指向内存中的值
+赋值时实际上是将一个变量的值进行拷贝赋给另一个变量
+可以用 <code>&amp;i</code>获取变量内存地址，值类型变量值放在堆中</p>
+<p>更复杂的数据一般使用引用类型保存，一个引用类型的变量存储的是其值所在的内存地址，或内存中第一个字所在的位置
+这个内存地址被成为指针，实际上也存在另外的一个值里
+同一个引用指针指向的多个字可以是在连续的内存地址中（也是最快的存储方式），也可以将这些字分散存放在内存，每个字指示了下一个字所在的内存地址</p>
+<h3 id="heading">:=<a href="#heading" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>使用变量的首选形式，但只能被用于函数体内而无法在全局变量中使用
+<em>注：定义了某个局部变量却没在作用域里使用也会编译错误</em>
+<em>但全局变量允许声明而不使用</em>
+当然也能这样用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#34;abc&#34;</span>
+</span></span></code></pre></div><p>这叫并行或同时赋值，_可以用来抛弃值，作为一个只写变量但不得到其值，因为go里必须使用所有声明的变量，但有时并不需要使用从一个函数里得到的所有返回值
+如果想交换变量，可以</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> = <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">a</span>;
+</span></span></code></pre></div><p>并行赋值也可用于一个函数返回多个值时</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">val</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">Func1</span>(<span style="color:#a6e22e">var1</span>);
+</span></span></code></pre></div><h3 id="常量">常量<a href="#常量" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>一个简单值的标识符，运行时不会被修改的量，只可以是布尔型，数字型和字符串型</p>
+<p>常量格式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">identifier</span> [<span style="color:#66d9ef">type</span>] = <span style="color:#a6e22e">value</span>
+</span></span></code></pre></div><p>可以省略说明符 <code>[type]</code>，因为编译器能根据变量值来判断类型，多个相同类型的声明也能简写为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">c_name1</span>, <span style="color:#a6e22e">c_name2</span> = <span style="color:#a6e22e">value1</span>, <span style="color:#a6e22e">value2</span>
+</span></span></code></pre></div><p>常量也能定义为枚举</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Unknown</span> = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Female</span> = <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Male</span> = <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>常量可以用 <code>len()</code>,<code>cap()</code>,<code>unsafe.Sizeof()</code>来计算函数表达式的值，但函数必须是内置函数，否则无法编译</p>
+<h4 id="iota">iota<a href="#iota" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<p>特殊常量，可以被编译器修改
+在const关键字出现时将充值为0，每新增一行常量声明就将其计数一次（可以理解为const语句块中的行索引）
+iota可以用作枚举值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span> = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span> = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">c</span> = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>上面的第一个iota等于0，在新的一行被使用前值都自动加一，所以</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span> = <span style="color:#66d9ef">iota</span>  <span style="color:#75715e">//a=0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">b</span>         <span style="color:#75715e">//b=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">c</span>         <span style="color:#75715e">//c=2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>)
+</span></span></code></pre></div><p>iota在块中的增加与这一行表达式无关，即就算这一行是一个独立的赋值，只要之前有出现过iota，就能自增1</p>
+<p>另，iota也带来不少有意思的操作</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">i</span>=<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">iota</span>       <span style="color:#75715e">//i=1，1左移0位仍为1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">j</span>=<span style="color:#ae81ff">3</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">iota</span>       <span style="color:#75715e">//j=6，3左移0位为6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">k</span>               <span style="color:#75715e">//k=12，3左移2位为12
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">l</span>               <span style="color:#75715e">//l=24，3左移3位为24
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>)
+</span></span></code></pre></div><p>iota在同一个conse常量组里递增，当有新的const关键字时将重新计时</p>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://blog.wizzz.ink/posts/buildwebsite/">
+                <span class="button__text">建站！</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    
+		<script src="https://utteranc.es/client.js"
+		repo="iku50/iku50.github.io"
+		label="💬"
+		issue-term="title"
+		theme="github-dark-orange"
+		crossorigin="anonymous"
+		async>
+		</script>
+
+<footer class="footer">
+  <div class="footer__inner">
+  
+    
+      <div class="copyright copyright--user">
+        <span>wizzz</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="https://blog.wizzz.ink/assets/main.js"></script>
+<script src="https://blog.wizzz.ink/assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

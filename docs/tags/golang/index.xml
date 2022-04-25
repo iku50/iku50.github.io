@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Wizzz.ink</title>
-    <link>https://blog.wizzz.ink/posts/</link>
-    <description>Recent content in Posts on Wizzz.ink</description>
+    <title>golang on Wizzz.ink</title>
+    <link>https://blog.wizzz.ink/tags/golang/</link>
+    <description>Recent content in golang on Wizzz.ink</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>wizzz</copyright>
-    <lastBuildDate>Mon, 25 Apr 2022 23:27:12 +0800</lastBuildDate><atom:link href="https://blog.wizzz.ink/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Apr 2022 23:27:12 +0800</lastBuildDate><atom:link href="https://blog.wizzz.ink/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go笔记1</title>
       <link>https://blog.wizzz.ink/posts/gonote1/</link>
@@ -400,96 +400,6 @@ iota可以用作枚举值&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;l&lt;/span&gt;               &lt;span style=&#34;color:#75715e&#34;&gt;//l=24，3左移3位为24
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;iota在同一个conse常量组里递增，当有新的const关键字时将重新计时&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>建站！</title>
-      <link>https://blog.wizzz.ink/posts/buildwebsite/</link>
-      <pubDate>Mon, 25 Apr 2022 14:41:07 +0800</pubDate>
-      
-      <guid>https://blog.wizzz.ink/posts/buildwebsite/</guid>
-      <description>用hugo+github pages托管+阿里云ecs建站 之前是用wordpress建站的，但实在受不了它每次超慢的线上操作，而且对md格式文件的支持也不够好。因此在查询资料后决定通过hugo建立静态博客。
-前期准备 0. 资源准备  阿里云ECS服务器（或者别的什么腾讯云等服务器也行，因为github pages托管在国内访问速度太慢，所以用DNS解析到国内的服务器绑定的域名上）。 go环境安装。 一个自己拥有的独立域名（10块钱买一个不成问题）。  1. hugo安装 由于我是manjaro系统，且之前早就已经安装好了go环境，所以我只需要用snap直接安装hugo即可。
-sudo snap install hugo 然后检查一下版本看是否安装成功。
-&amp;gt;&amp;gt;&amp;gt; hugo version hugo v0.96.0-2fd4a7d3d6845e75f8b8ae3a2a7bd91438967bbb linux/amd64 BuildDate=2022-03-26T09:15:58Z VendorInfo=mage 2. github pages库创建 在自己的github上建一个新的仓库，名为用户名.github.io。
-注意该仓库必须是public的。
-在本地创建一个新文件夹，用git把仓库克隆下来。
-git clone &amp;lt;仓库的url&amp;gt; 建站 1. 本地网站部署 在此目录下打开终端，敲入一下命令创建网站。
-hugo new site . #如果显示说此目录下已经有文件就在后面加个&amp;#39; --force&amp;#39;强制操作 在跳出来的信息中。
-Congratulations! Your new Hugo site is created in /home/rickeee/website/test.  Just a few more steps and you&amp;#39;re ready to go:  1. Download a theme into the same-named folder.</description>
-      <content>&lt;h2 id=&#34;用hugogithub-pages托管阿里云ecs建站&#34;&gt;用hugo+github pages托管+阿里云ecs建站&lt;/h2&gt;
-&lt;p&gt;之前是用wordpress建站的，但实在受不了它每次超慢的线上操作，而且对md格式文件的支持也不够好。因此在查询资料后决定通过hugo建立静态博客。&lt;/p&gt;
-&lt;h3 id=&#34;前期准备&#34;&gt;前期准备&lt;/h3&gt;
-&lt;h4 id=&#34;0-资源准备&#34;&gt;0. 资源准备&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;阿里云ECS服务器（或者别的什么腾讯云等服务器也行，因为github pages托管在国内访问速度太慢，所以用DNS解析到国内的服务器绑定的域名上）。&lt;/li&gt;
-&lt;li&gt;go环境安装。&lt;/li&gt;
-&lt;li&gt;一个自己拥有的独立域名（10块钱买一个不成问题）。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&#34;1-hugo安装&#34;&gt;1. hugo安装&lt;/h4&gt;
-&lt;p&gt;由于我是manjaro系统，且之前早就已经安装好了go环境，所以我只需要用snap直接安装hugo即可。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo snap install hugo          
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后检查一下版本看是否安装成功。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;gt;&amp;gt;&amp;gt; hugo version    
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo v0.96.0-2fd4a7d3d6845e75f8b8ae3a2a7bd91438967bbb linux/amd64 BuildDate&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;2022-03-26T09:15:58Z VendorInfo&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;mage
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;2-github-pages库创建&#34;&gt;2. github pages库创建&lt;/h4&gt;
-&lt;p&gt;在自己的github上建一个新的仓库，名为&lt;code&gt;用户名.github.io&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;注意该仓库必须是public的。&lt;/p&gt;
-&lt;p&gt;在本地创建一个新文件夹，用git把仓库克隆下来。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone &amp;lt;仓库的url&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;建站&#34;&gt;建站&lt;/h3&gt;
-&lt;h4 id=&#34;1-本地网站部署&#34;&gt;1. 本地网站部署&lt;/h4&gt;
-&lt;p&gt;在此目录下打开终端，敲入一下命令创建网站。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new site .  &lt;span style=&#34;color:#75715e&#34;&gt;#如果显示说此目录下已经有文件就在后面加个&amp;#39; --force&amp;#39;强制操作&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在跳出来的信息中。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Congratulations! Your new Hugo site is created in /home/rickeee/website/test.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Just a few more steps and you&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;re ready to go:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;1. Download a theme into the same-named folder.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   Choose a theme from https://themes.gohugo.io/ or
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   create your own with the &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hugo new theme &amp;lt;THEMENAME&amp;gt;&amp;#34;&lt;/span&gt; command.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;2. Perhaps you want to add some content. You can add single files
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   with &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hugo new &amp;lt;SECTIONNAME&amp;gt;/&amp;lt;FILENAME&amp;gt;.&amp;lt;FORMAT&amp;gt;&amp;#34;&lt;/span&gt;.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;3. Start the built-in live server via &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hugo server&amp;#34;&lt;/span&gt;.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Visit https://gohugo.io/ &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; quickstart guide and full documentation.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到&lt;code&gt;Choose a theme from https://themes.gohugo.io/&lt;/code&gt;这一项，直接点链接或者复制到浏览器打开挑选喜欢的主题。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.wizzz.ink/media/buildwebsite/hugothemecut.png&#34; alt=&#34;hugothemecut&#34;&gt;&lt;/p&gt;
-&lt;p&gt;挑选好后查看其github页面获取url，再在网站目录里用git下载。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git init
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule add &amp;lt;主题的url地址&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;采用&lt;code&gt;submodule&lt;/code&gt;管理theme会比较好更新管理。&lt;/p&gt;
-&lt;p&gt;进入theme文件夹找到该主题。进入该主题文件夹找到&lt;code&gt;exampleSite/config.toml&lt;/code&gt;文件，复制下来并覆盖掉根目录下的同名文件。&lt;/p&gt;
-&lt;p&gt;打开该文件，修改一下要修改的属性（网站名，副标题，该主题希望你进行选择的一些参数等）（一般旁边有注释帮助理解）（还有一些必须修改的稍后讲）&lt;/p&gt;
-&lt;p&gt;可以在根目录打开终端用以下命令构建网站：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开启网站服务&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo server
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在浏览器中打开&lt;code&gt;http://localhost:1313&lt;/code&gt;看看效果&lt;/p&gt;
-&lt;h4 id=&#34;4-github-pages托管&#34;&gt;4. github pages托管&lt;/h4&gt;
-&lt;p&gt;记得之前的&lt;code&gt;config.toml&lt;/code&gt;文件吗，其中有一项是需要修改的。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;baseURL&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://&amp;lt;github仓库的url&amp;gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在根目录用git push到远程仓库上&lt;/p&gt;
-&lt;p&gt;在github上设置page参数&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.wizzz.ink/media/buildwebsite/githubsettingcut.png&#34; alt=&#34;githubsettingcut&#34;&gt;&lt;/p&gt;
-&lt;p&gt;把source选项中的&lt;code&gt;/(root)&lt;/code&gt;改成&lt;code&gt;/docs&lt;/code&gt;。方便后面生成。&lt;/p&gt;
-&lt;p&gt;在本地的网站根目录下打开终端改生成网页的目录到docs文件夹下（默认会生成在public文件下所以需要改）&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo -d docs
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后就可以打开&lt;code&gt;https://&amp;lt;库url&amp;gt;&lt;/code&gt;看到自己的网页了&lt;/p&gt;
-&lt;h4 id=&#34;5-dns解析设置&#34;&gt;5. DNS解析设置&lt;/h4&gt;
-&lt;p&gt;在如果是阿里云上购买的域名，那么在阿里云的控制台上进入域名设置界面，为服务器绑定域名（主机记录为@，值为服务器的公网ip地址），并添加一个CNAME类型的记录，主机记录可以是&lt;code&gt;blog&lt;/code&gt;，值就是github pages部署的自己网站的地址。&lt;/p&gt;
-&lt;p&gt;设置完后在网站根目录的static文件夹下创建一个CNAME文件，打开并写入设置的域名（若前面主机记录是blog即&lt;code&gt;blog.&amp;lt;你的域名&amp;gt;&lt;/code&gt;）。&lt;/p&gt;
-&lt;p&gt;重新生成一下并&lt;code&gt;push&lt;/code&gt;到github上。&lt;/p&gt;
-&lt;p&gt;改变github pages设置中的custom domian为设置的新域名。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.wizzz.ink/media/buildwebsite/blogsetingdomaincut.png&#34; alt=&#34;blogsetingdomaincut&#34;&gt;&lt;/p&gt;
-&lt;p&gt;然后就可以用自己的域名访问了。&lt;/p&gt;
-&lt;h3 id=&#34;其他注意事项&#34;&gt;其他注意事项&lt;/h3&gt;
-&lt;p&gt;写博客时用：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new posts/&amp;lt;文章名.md&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建新文章。&lt;/p&gt;
-&lt;p&gt;写完后记得把文章头部的&lt;code&gt;draft&lt;/code&gt;属性设置为&lt;code&gt;false&lt;/code&gt;，不然就是默认为草稿不生成文章。&lt;/p&gt;
 </content>
     </item>
     
