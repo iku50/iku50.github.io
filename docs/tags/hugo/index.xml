@@ -10,10 +10,10 @@
     <lastBuildDate>Mon, 25 Apr 2022 14:41:07 +0800</lastBuildDate><atom:link href="https://blog.wizzz.ink/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>建站！</title>
-      <link>https://blog.wizzz.ink/2022/04/%E5%BB%BA%E7%AB%99/</link>
+      <link>https://blog.wizzz.ink/posts/buildwebsite/</link>
       <pubDate>Mon, 25 Apr 2022 14:41:07 +0800</pubDate>
       
-      <guid>https://blog.wizzz.ink/2022/04/%E5%BB%BA%E7%AB%99/</guid>
+      <guid>https://blog.wizzz.ink/posts/buildwebsite/</guid>
       <description>用hugo+github pages托管+阿里云ecs建站 之前是用wordpress建站的，但实在受不了它每次超慢的线上操作，而且对md格式文件的支持也不够好。因此在查询资料后决定通过hugo建立静态博客。
 前期准备 0. 资源准备  阿里云ECS服务器（或者别的什么腾讯云等服务器也行，因为github pages托管在国内访问速度太慢，所以用DNS解析到国内的服务器绑定的域名上）。 go环境安装。 一个自己拥有的独立域名（10块钱买一个不成问题）。  1. hugo安装 由于我是manjaro系统，且之前早就已经安装好了go环境，所以我只需要用snap直接安装hugo即可。
 sudo snap install hugo 然后检查一下版本看是否安装成功。
