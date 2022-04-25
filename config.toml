@@ -54,7 +54,7 @@ paginate = 5
   # can be overridden in a page's front-matter
   # TocTitle = "Table of Contents" # default
 [params.utteranc]
-  enable = false
+  enable = true
   repo = "iku50/iku50.github.io" ##换成自己得
   issueTerm = "title"
   theme = "gruvbox-dark"
