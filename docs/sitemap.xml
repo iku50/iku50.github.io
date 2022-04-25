@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.wizzz.ink/about/</loc>
+    <lastmod>2022-04-25T13:37:09+08:00</lastmod>
+  </url><url>
     <loc>https://blog.wizzz.ink/categories/</loc>
   </url><url>
     <loc>https://blog.wizzz.ink/tags/</loc>

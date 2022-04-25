@@ -1,4 +1,4 @@
-baseURL = 'https://blog.wizzz.ink'
+baseURL = 'https://blog.wizzz.ink/'
 languageCode = 'en-us'
 title = 'wiz website'
 theme = "terminal"
@@ -64,8 +64,8 @@ paginate = 5
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Terminal"
-    subtitle = "A simple, retro theme for Hugo"
+    title = "Wizzz.ink"
+    subtitle = "a personal blog"
     owner = ""
     keywords = ""
     copyright = "wizzz"
