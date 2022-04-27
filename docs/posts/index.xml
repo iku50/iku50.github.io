@@ -7,7 +7,315 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>wizzz</copyright>
-    <lastBuildDate>Mon, 25 Apr 2022 23:27:12 +0800</lastBuildDate><atom:link href="https://blog.wizzz.ink/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Apr 2022 19:16:09 +0800</lastBuildDate><atom:link href="https://blog.wizzz.ink/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go笔记2</title>
+      <link>https://blog.wizzz.ink/posts/gonote2/</link>
+      <pubDate>Wed, 27 Apr 2022 19:16:09 +0800</pubDate>
+      
+      <guid>https://blog.wizzz.ink/posts/gonote2/</guid>
+      <description>go语言学习笔记2 第二份
+go语言运算符 go里内置的运算符有：
+ 算术运算符 逻辑运算符 关系运算符 位运算符 赋值运算符 其他运算符  算术运算符 设A为10，B为20
+   运算符 描述 实例     + 相加 A+B输出30   - 相减 A-B输出-10   * 相乘 A*B输出200   / 相除 B/A输出2   % 求余 B%A输出0   ++ 自增 A++输出11   &amp;ndash; 自减 A&amp;ndash;输出9    关系运算符    运算符 描述     == 两值相等返回true，不相等返回false   !</description>
+      <content>&lt;h1 id=&#34;go语言学习笔记2&#34;&gt;go语言学习笔记2&lt;/h1&gt;
+&lt;p&gt;第二份&lt;/p&gt;
+&lt;h2 id=&#34;go语言运算符&#34;&gt;go语言运算符&lt;/h2&gt;
+&lt;p&gt;go里内置的运算符有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;算术运算符&lt;/li&gt;
+&lt;li&gt;逻辑运算符&lt;/li&gt;
+&lt;li&gt;关系运算符&lt;/li&gt;
+&lt;li&gt;位运算符&lt;/li&gt;
+&lt;li&gt;赋值运算符&lt;/li&gt;
+&lt;li&gt;其他运算符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;算术运算符&#34;&gt;算术运算符&lt;/h3&gt;
+&lt;p&gt;设A为10，B为20&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;th&gt;实例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;+&lt;/td&gt;
+&lt;td&gt;相加&lt;/td&gt;
+&lt;td&gt;A+B输出30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;相减&lt;/td&gt;
+&lt;td&gt;A-B输出-10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;相乘&lt;/td&gt;
+&lt;td&gt;A*B输出200&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;/&lt;/td&gt;
+&lt;td&gt;相除&lt;/td&gt;
+&lt;td&gt;B/A输出2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;求余&lt;/td&gt;
+&lt;td&gt;B%A输出0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;++&lt;/td&gt;
+&lt;td&gt;自增&lt;/td&gt;
+&lt;td&gt;A++输出11&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;ndash;&lt;/td&gt;
+&lt;td&gt;自减&lt;/td&gt;
+&lt;td&gt;A&amp;ndash;输出9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;关系运算符&#34;&gt;关系运算符&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;==&lt;/td&gt;
+&lt;td&gt;两值相等返回true，不相等返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;!=&lt;/td&gt;
+&lt;td&gt;两值不等返回true，相等返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;gt;&lt;/td&gt;
+&lt;td&gt;左边值更大返回true，否则false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt;&lt;/td&gt;
+&lt;td&gt;右边值更大返回true，否则false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;gt;=&lt;/td&gt;
+&lt;td&gt;右边值更小返回false，否则true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;lt;=&lt;/td&gt;
+&lt;td&gt;左边值更小返回false，否则true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;逻辑运算符&#34;&gt;逻辑运算符&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;amp;&amp;amp;&lt;/td&gt;
+&lt;td&gt;与&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;||&lt;/td&gt;
+&lt;td&gt;或&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;！&lt;/td&gt;
+&lt;td&gt;非&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;位运算符&#34;&gt;位运算符&lt;/h3&gt;
+&lt;p&gt;go支持&amp;amp;、|、^、&amp;laquo;、&amp;raquo;这几种位运算符&lt;/p&gt;
+&lt;h3 id=&#34;赋值运算符&#34;&gt;赋值运算符&lt;/h3&gt;
+&lt;p&gt;支持所有算术运算符和位运算符对应的赋值运算符&lt;/p&gt;
+&lt;h3 id=&#34;其他运算符&#34;&gt;其他运算符&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;amp;&lt;/td&gt;
+&lt;td&gt;返回地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;指针变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;运算符优先级&#34;&gt;运算符优先级&lt;/h3&gt;
+&lt;p&gt;二元运算符方向均是从左至右&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;优先级&lt;/th&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;* / % &amp;raquo; &amp;laquo; &amp;amp;&amp;amp; ^&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;+ -| ^&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;== != &amp;lt; &amp;lt;= &amp;gt; &amp;gt;=&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;&amp;amp;&amp;amp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;||&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;当然，可以通过括号临时提升某个表达式的优先级
+&lt;em&gt;注：go的自增自减只能作为表达式使用而不能作为赋值语句&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;条件语句&#34;&gt;条件语句&lt;/h2&gt;
+&lt;h3 id=&#34;if语句&#34;&gt;if语句&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;right&amp;#34;&lt;/span&gt;;&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;/* 如果条件为 true 则执行以下语句 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a 小于 20\n&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;go的if强大的一个地方就是能在条件判断语句前声明生命周期只在该条件语句内的变量，使用;进行分割&lt;/p&gt;
+&lt;p&gt;条件不需要用()包含，但必须存在{}，左括号必须在if或else的同一行,在有返回值的函数中，最终的return不能在条件语句中&lt;/p&gt;
+&lt;h3 id=&#34;if-else&#34;&gt;if else&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;age&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;age&lt;/span&gt; &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;too small&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;too big&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;if嵌套语句&#34;&gt;if嵌套语句&lt;/h3&gt;
+&lt;p&gt;略&lt;/p&gt;
+&lt;h3 id=&#34;switch-case语句&#34;&gt;switch case语句&lt;/h3&gt;
+&lt;p&gt;go里的switch不用加break，默认情况下该逻辑语句的实现自带break，匹配成功后就不会执行其他case，但如果要执行后面的语句，可以使用 &lt;code&gt;fallthrough&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;其中匹配的类型并不局限于常量或整数，但必须是相同的类型，或结果位相同类型的表达式，可以同时测试多个值，用逗号分开即可
+&lt;code&gt;case val1,val2,val3&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;type-switch&#34;&gt;type switch&lt;/h4&gt;
+&lt;p&gt;switch case还可被用于type-switch来判断某个interface中实际储存的变量类型&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;.(&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#a6e22e&#34;&gt;statement&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;);    
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#a6e22e&#34;&gt;statement&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;); 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;/* 你可以定义任意个数的case */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;: &lt;span style=&#34;color:#75715e&#34;&gt;/* 可选 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#a6e22e&#34;&gt;statement&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;fallthrough&#34;&gt;fallthrough&lt;/h4&gt;
+&lt;p&gt;强制执行下一条case而不去管该case是否为true&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1、case 条件语句为 true&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;fallthrough&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2、case 条件语句为 false&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上面两条都会被执行&lt;/p&gt;
+&lt;h3 id=&#34;select语句&#34;&gt;select语句&lt;/h3&gt;
+&lt;p&gt;go中独有的一个控制结构，类似于用于通信的switch语句
+每个case都必须是一个通信操作，要么发送要么接收
+select随机执行一个可运行的case，如果没有case可运行就会阻塞直到有case可运行为止，一个默认的子句应该总是可运行的&lt;/p&gt;
+&lt;p&gt;select的语法如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;select&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;communication&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;clause&lt;/span&gt;  :
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#a6e22e&#34;&gt;statement&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;);    
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;communication&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;clause&lt;/span&gt;  :
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#a6e22e&#34;&gt;statement&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;/* 你可以定义任意数量的 case */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt; : &lt;span style=&#34;color:#75715e&#34;&gt;/* 可选 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#a6e22e&#34;&gt;statement&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;语法特征是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每个case都必须是一个通信&lt;/li&gt;
+&lt;li&gt;所有channel表达式都会被求值&lt;/li&gt;
+&lt;li&gt;所有被发送的表达式都会被求值&lt;/li&gt;
+&lt;li&gt;如果任意某个通信可以进行就执行，其他被忽略&lt;/li&gt;
+&lt;li&gt;如果有多个case可以运行，它会随机公平地选出一个执行，其他不会执行，否则：
+&lt;ul&gt;
+&lt;li&gt;如果有default语句就执行该语句&lt;/li&gt;
+&lt;li&gt;没有的话就将阻塞至某个通信可以运行为止，go不会重新对channel或值进行求值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c1&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;c2&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;c3&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;chan&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i1&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i2&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;select&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i1&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;c1&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;received &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i1&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; from c1\n&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i2&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sent &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i2&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; to c2\n&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i3&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;ok&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;c3&lt;/span&gt;):  &lt;span style=&#34;color:#75715e&#34;&gt;// same as: i3, ok := &amp;lt;-c3
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ok&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;received &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i3&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; from c3\n&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c3 is closed\n&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;no communication\n&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;循环语句&#34;&gt;循环语句&lt;/h2&gt;
+&lt;h3 id=&#34;for循环&#34;&gt;for循环&lt;/h3&gt;
+&lt;p&gt;有三种形式，只有一种使用分号&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for init; condition; post { }&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for condition { }&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for { }&lt;/code&gt; &lt;em&gt;无限循环&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;init&lt;/code&gt;：赋值表达式，给控制变量赋初值
+&lt;code&gt;condition&lt;/code&gt;：关系表达式或逻辑表达式，循环控制条件
+&lt;code&gt;post&lt;/code&gt;：一般为赋值表达式，给控制变量增量或减量&lt;/p&gt;
+&lt;p&gt;执行过程：先执行 &lt;code&gt;init&lt;/code&gt;，然后用 &lt;code&gt;condition&lt;/code&gt;判定是否满足给定条件，值为真则执行循环体内语句，然后执行 &lt;code&gt;post&lt;/code&gt;并再次对 &lt;code&gt;condition&lt;/code&gt;进行判定，直到不满足条件则跳出循环&lt;/p&gt;
+&lt;p&gt;for的 &lt;code&gt;range&lt;/code&gt;格式可对slice，map，数组，字符串进行迭代循环，格式如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;key&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;range&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oldMap&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;newMap&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;key&lt;/span&gt;] = &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;而对于无限循环，要中止就按 &lt;code&gt;ctrl+c&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;foreach-range循环&#34;&gt;for—each range循环&lt;/h4&gt;
+&lt;p&gt;这种循环可以对字符串，数组，切片等进行迭代输出元素&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;strings&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; []&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;google&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;runoob&amp;#34;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;range&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;strings&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;numbers&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;]&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;{&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;range&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;numbers&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;第 %d 位 x 的值 = %d\n&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;循环嵌套&#34;&gt;循环嵌套&lt;/h3&gt;
+&lt;p&gt;略&lt;/p&gt;
+&lt;h3 id=&#34;循环控制语句&#34;&gt;循环控制语句&lt;/h3&gt;
+&lt;p&gt;go支持一下几种循环控制语句：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;break&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;continue&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;goto&lt;/code&gt; &lt;em&gt;这个小心用&lt;/em&gt;&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Go笔记1</title>
       <link>https://blog.wizzz.ink/posts/gonote1/</link>

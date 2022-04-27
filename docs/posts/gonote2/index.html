@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Go笔记2 :: Wizzz.ink</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="go笔记2：运算符，条件语句和循环语句" />
+<meta name="keywords" content=", " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.wizzz.ink/posts/gonote2/" />
+
+
+
+
+<link rel="stylesheet" href="https://blog.wizzz.ink/assets/style.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="https://blog.wizzz.ink/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="https://blog.wizzz.ink/img/favicon/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Go笔记2">
+<meta property="og:description" content="go笔记2：运算符，条件语句和循环语句" />
+<meta property="og:url" content="https://blog.wizzz.ink/posts/gonote2/" />
+<meta property="og:site_name" content="Wizzz.ink" />
+
+  <meta property="og:image" content="https://blog.wizzz.ink/">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2022-04-27 19:16:09 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="orange">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Wizzz.ink
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://blog.wizzz.ink/posts/gonote2/">Go笔记2</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2022-04-27
+        
+      </span>
+    
+    
+      <span class="post-author">:: [Wizzz]</span>
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://blog.wizzz.ink/tags/golang/">golang</a>&nbsp;
+    
+    #<a href="https://blog.wizzz.ink/tags/"></a>&nbsp;
+    
+  </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="go语言学习笔记2">go语言学习笔记2<a href="#go语言学习笔记2" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>第二份</p>
+<h2 id="go语言运算符">go语言运算符<a href="#go语言运算符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>go里内置的运算符有：</p>
+<ul>
+<li>算术运算符</li>
+<li>逻辑运算符</li>
+<li>关系运算符</li>
+<li>位运算符</li>
+<li>赋值运算符</li>
+<li>其他运算符</li>
+</ul>
+<h3 id="算术运算符">算术运算符<a href="#算术运算符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>设A为10，B为20</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>相加</td>
+<td>A+B输出30</td>
+</tr>
+<tr>
+<td>-</td>
+<td>相减</td>
+<td>A-B输出-10</td>
+</tr>
+<tr>
+<td>*</td>
+<td>相乘</td>
+<td>A*B输出200</td>
+</tr>
+<tr>
+<td>/</td>
+<td>相除</td>
+<td>B/A输出2</td>
+</tr>
+<tr>
+<td>%</td>
+<td>求余</td>
+<td>B%A输出0</td>
+</tr>
+<tr>
+<td>++</td>
+<td>自增</td>
+<td>A++输出11</td>
+</tr>
+<tr>
+<td>&ndash;</td>
+<td>自减</td>
+<td>A&ndash;输出9</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关系运算符">关系运算符<a href="#关系运算符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>两值相等返回true，不相等返回false</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>两值不等返回true，相等返回false</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>左边值更大返回true，否则false</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>右边值更大返回true，否则false</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>右边值更小返回false，否则true</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>左边值更小返回false，否则true</td>
+</tr>
+</tbody>
+</table>
+<h3 id="逻辑运算符">逻辑运算符<a href="#逻辑运算符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;&amp;</td>
+<td>与</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或</td>
+</tr>
+<tr>
+<td>！</td>
+<td>非</td>
+</tr>
+</tbody>
+</table>
+<h3 id="位运算符">位运算符<a href="#位运算符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go支持&amp;、|、^、&laquo;、&raquo;这几种位运算符</p>
+<h3 id="赋值运算符">赋值运算符<a href="#赋值运算符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>支持所有算术运算符和位运算符对应的赋值运算符</p>
+<h3 id="其他运算符">其他运算符<a href="#其他运算符" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>返回地址</td>
+</tr>
+<tr>
+<td>*</td>
+<td>指针变量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="运算符优先级">运算符优先级<a href="#运算符优先级" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>二元运算符方向均是从左至右</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>运算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>* / % &raquo; &laquo; &amp;&amp; ^</td>
+</tr>
+<tr>
+<td>4</td>
+<td>+ -| ^</td>
+</tr>
+<tr>
+<td>3</td>
+<td>== != &lt; &lt;= &gt; &gt;=</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>1</td>
+<td>||</td>
+</tr>
+</tbody>
+</table>
+<p>当然，可以通过括号临时提升某个表达式的优先级
+<em>注：go的自增自减只能作为表达式使用而不能作为赋值语句</em></p>
+<h2 id="条件语句">条件语句<a href="#条件语句" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="if语句">if语句<a href="#if语句" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span><span style="color:#f92672">:=</span><span style="color:#e6db74">&#34;right&#34;</span>;<span style="color:#a6e22e">a</span>&lt;<span style="color:#ae81ff">20</span> {
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">/* 如果条件为 true 则执行以下语句 */</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;a 小于 20\n&#34;</span>,<span style="color:#a6e22e">b</span> )
+</span></span><span style="display:flex;"><span>   }
+</span></span></code></pre></div><p>go的if强大的一个地方就是能在条件判断语句前声明生命周期只在该条件语句内的变量，使用;进行分割</p>
+<p>条件不需要用()包含，但必须存在{}，左括号必须在if或else的同一行,在有返回值的函数中，最终的return不能在条件语句中</p>
+<h3 id="if-else">if else<a href="#if-else" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">age</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">25</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;true&#34;</span>)
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">age</span> &lt; <span style="color:#ae81ff">25</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;too small&#34;</span>)
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;too big&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="if嵌套语句">if嵌套语句<a href="#if嵌套语句" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>略</p>
+<h3 id="switch-case语句">switch case语句<a href="#switch-case语句" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go里的switch不用加break，默认情况下该逻辑语句的实现自带break，匹配成功后就不会执行其他case，但如果要执行后面的语句，可以使用 <code>fallthrough</code></p>
+<p>其中匹配的类型并不局限于常量或整数，但必须是相同的类型，或结果位相同类型的表达式，可以同时测试多个值，用逗号分开即可
+<code>case val1,val2,val3</code></p>
+<h4 id="type-switch">type switch<a href="#type-switch" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<p>switch case还可被用于type-switch来判断某个interface中实际储存的变量类型</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">x</span>.(<span style="color:#66d9ef">type</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">type</span>:
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">statement</span>(<span style="color:#a6e22e">s</span>);    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">type</span>:
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">statement</span>(<span style="color:#a6e22e">s</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* 你可以定义任意个数的case */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span>: <span style="color:#75715e">/* 可选 */</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">statement</span>(<span style="color:#a6e22e">s</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="fallthrough">fallthrough<a href="#fallthrough" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<p>强制执行下一条case而不去管该case是否为true</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">switch</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">true</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;1、case 条件语句为 true&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">fallthrough</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">false</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;2、case 条件语句为 false&#34;</span>)
+</span></span></code></pre></div><p>上面两条都会被执行</p>
+<h3 id="select语句">select语句<a href="#select语句" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go中独有的一个控制结构，类似于用于通信的switch语句
+每个case都必须是一个通信操作，要么发送要么接收
+select随机执行一个可运行的case，如果没有case可运行就会阻塞直到有case可运行为止，一个默认的子句应该总是可运行的</p>
+<p>select的语法如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">communication</span> <span style="color:#a6e22e">clause</span>  :
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">statement</span>(<span style="color:#a6e22e">s</span>);    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">communication</span> <span style="color:#a6e22e">clause</span>  :
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">statement</span>(<span style="color:#a6e22e">s</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* 你可以定义任意数量的 case */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> : <span style="color:#75715e">/* 可选 */</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">statement</span>(<span style="color:#a6e22e">s</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>语法特征是</p>
+<ul>
+<li>每个case都必须是一个通信</li>
+<li>所有channel表达式都会被求值</li>
+<li>所有被发送的表达式都会被求值</li>
+<li>如果任意某个通信可以进行就执行，其他被忽略</li>
+<li>如果有多个case可以运行，它会随机公平地选出一个执行，其他不会执行，否则：
+<ul>
+<li>如果有default语句就执行该语句</li>
+<li>没有的话就将阻塞至某个通信可以运行为止，go不会重新对channel或值进行求值</li>
+</ul>
+</li>
+</ul>
+<p>实例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c1</span>, <span style="color:#a6e22e">c2</span>, <span style="color:#a6e22e">c3</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i1</span>, <span style="color:#a6e22e">i2</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">select</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">i1</span> = <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c1</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;received &#34;</span>, <span style="color:#a6e22e">i1</span>, <span style="color:#e6db74">&#34; from c1\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">c2</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">i2</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;sent &#34;</span>, <span style="color:#a6e22e">i2</span>, <span style="color:#e6db74">&#34; to c2\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">i3</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c3</span>):  <span style="color:#75715e">// same as: i3, ok := &lt;-c3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ok</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;received &#34;</span>, <span style="color:#a6e22e">i3</span>, <span style="color:#e6db74">&#34; from c3\n&#34;</span>)
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;c3 is closed\n&#34;</span>)
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;no communication\n&#34;</span>)
+</span></span><span style="display:flex;"><span>  }  
+</span></span></code></pre></div><h2 id="循环语句">循环语句<a href="#循环语句" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="for循环">for循环<a href="#for循环" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>有三种形式，只有一种使用分号</p>
+<p><code>for init; condition; post { }</code></p>
+<p><code>for condition { }</code></p>
+<p><code>for { }</code> <em>无限循环</em></p>
+<p><code>init</code>：赋值表达式，给控制变量赋初值
+<code>condition</code>：关系表达式或逻辑表达式，循环控制条件
+<code>post</code>：一般为赋值表达式，给控制变量增量或减量</p>
+<p>执行过程：先执行 <code>init</code>，然后用 <code>condition</code>判定是否满足给定条件，值为真则执行循环体内语句，然后执行 <code>post</code>并再次对 <code>condition</code>进行判定，直到不满足条件则跳出循环</p>
+<p>for的 <code>range</code>格式可对slice，map，数组，字符串进行迭代循环，格式如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">oldMap</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">newMap</span>[<span style="color:#a6e22e">key</span>] = <span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>而对于无限循环，要中止就按 <code>ctrl+c</code></p>
+<h4 id="foreach-range循环">for—each range循环<a href="#foreach-range循环" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
+<p>这种循环可以对字符串，数组，切片等进行迭代输出元素</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">strings</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;google&#34;</span>, <span style="color:#e6db74">&#34;runoob&#34;</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">strings</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">s</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">6</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">x</span><span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">numbers</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;第 %d 位 x 的值 = %d\n&#34;</span>, <span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>        }  
+</span></span></code></pre></div><h3 id="循环嵌套">循环嵌套<a href="#循环嵌套" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>略</p>
+<h3 id="循环控制语句">循环控制语句<a href="#循环控制语句" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go支持一下几种循环控制语句：</p>
+<p><code>break</code></p>
+<p><code>continue</code></p>
+<p><code>goto</code> <em>这个小心用</em></p>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://blog.wizzz.ink/posts/gonote1/">
+                <span class="button__text">Go笔记1</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    
+		<script src="https://utteranc.es/client.js"
+		repo="iku50/iku50.github.io"
+		label="💬"
+		issue-term="title"
+		theme="github-dark-orange"
+		crossorigin="anonymous"
+		async>
+		</script>
+
+<footer class="footer">
+  <div class="footer__inner">
+  
+    
+      <div class="copyright copyright--user">
+        <span>wizzz</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="https://blog.wizzz.ink/assets/main.js"></script>
+<script src="https://blog.wizzz.ink/assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
