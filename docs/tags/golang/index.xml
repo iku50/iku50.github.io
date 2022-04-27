@@ -171,11 +171,11 @@ go语言运算符 go里内置的运算符有：
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;5&lt;/td&gt;
-&lt;td&gt;* / % &amp;raquo; &amp;laquo; &amp;amp;&amp;amp; ^&lt;/td&gt;
+&lt;td&gt;* / % &amp;raquo; &amp;laquo; &amp;amp; ^&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;4&lt;/td&gt;
-&lt;td&gt;+ -| ^&lt;/td&gt;
+&lt;td&gt;+ - | ^&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;3&lt;/td&gt;
