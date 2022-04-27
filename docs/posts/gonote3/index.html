@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Go笔记3 :: Wizzz.ink</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="go笔记3：函数与变量作用域" />
+<meta name="keywords" content=", " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.wizzz.ink/posts/gonote3/" />
+
+
+
+
+<link rel="stylesheet" href="https://blog.wizzz.ink/assets/style.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="https://blog.wizzz.ink/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="https://blog.wizzz.ink/img/favicon/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Go笔记3">
+<meta property="og:description" content="go笔记3：函数与变量作用域" />
+<meta property="og:url" content="https://blog.wizzz.ink/posts/gonote3/" />
+<meta property="og:site_name" content="Wizzz.ink" />
+
+  <meta property="og:image" content="https://blog.wizzz.ink/">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2022-04-27 19:26:25 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="orange">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Wizzz.ink
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://blog.wizzz.ink/posts/gonote3/">Go笔记3</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2022-04-27
+        
+      </span>
+    
+    
+      <span class="post-author">:: [Wizzz]</span>
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://blog.wizzz.ink/tags/golang/">golang</a>&nbsp;
+    
+  </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="go语言学习笔记3">go语言学习笔记3<a href="#go语言学习笔记3" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>这篇是函数相关与变量作用域相关</p>
+<h2 id="go语言函数">go语言函数<a href="#go语言函数" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>go语言最少有个main函数，go语言标准库里有不少内置函数</p>
+<p>定义</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">function_name</span>( [<span style="color:#a6e22e">parameter</span> <span style="color:#a6e22e">list</span>] ) [<span style="color:#a6e22e">return_types</span>]{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*函数体*/</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>func</code>:函数由此开始声明</li>
+<li><code>function_name</code>:函数名称，列表和返回值类型构成了函数签名</li>
+<li><code>parameter list</code>:参数列表，参数就像占位符，函数调用时可以把值传进去</li>
+<li><code>return_types</code>:返回类型，当函数不需要返回值那就不是必须的</li>
+<li>函数体：函数定义的代码集合</li>
+</ul>
+<h3 id="可变参数">可变参数<a href="#可变参数" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>任意多个参数在前面加上<code>...</code>就行</p>
+<p>本质上是一个数组，可以像使用数组一样使用它</p>
+<h3 id="返回多值">返回多值<a href="#返回多值" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go的函数可以返回多个值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">swap</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">x</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>不想用某个值就在接收时用<code>_</code>省略掉就好了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">file</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Open</span>(<span style="color:#e6db74">&#34;/usr/tmp&#34;</span>)
+</span></span></code></pre></div><h3 id="值传递">值传递<a href="#值传递" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>指在调用函数时将实际参数复制一份到函数中，这样若对参数修改，不影响到实际参数</p>
+<p>默认情况下go就用的是值传递</p>
+<p>但有时我们会像在函数内部对实际参数进行修改，所以有了引用传递</p>
+<h3 id="引用传递">引用传递<a href="#引用传递" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>指在调用函数时将实际参数的地址传入函数，那么函数中对参数进行的修改将影响到实际参数</p>
+<p>引用传递指针参数进函数内</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">swap</span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">y</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>) {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">temp</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">temp</span> = <span style="color:#f92672">*</span><span style="color:#a6e22e">x</span>    <span style="color:#75715e">/* 保持 x 地址上的值 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">*</span><span style="color:#a6e22e">x</span> = <span style="color:#f92672">*</span><span style="color:#a6e22e">y</span>      <span style="color:#75715e">/* 将 y 值赋给 x */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">*</span><span style="color:#a6e22e">y</span> = <span style="color:#a6e22e">temp</span>    <span style="color:#75715e">/* 将 temp 值赋给 y */</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>调用时：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">swap</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">b</span>)
+</span></span></code></pre></div><p>但实际上go所有的传递都是值传递，像slice或map等看似是引用传递但实际上它们本身就是指针，函数将该指针复制了一份，但它们指向的位置不变所以能够借指针改变值</p>
+<h3 id="函数作为实参">函数作为实参<a href="#函数作为实参" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>go中可以很灵活地创建函数并作为另一个函数的实参</p>
+<p>如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">getSquareRoot</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">float64</span>) <span style="color:#66d9ef">float64</span> {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Sqrt</span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>该函数返回了一个函数作为变量，使用也是完全没问题的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">getSquareRoot</span>(<span style="color:#ae81ff">9</span>))
+</span></span></code></pre></div><p>函数作参还可以轻易实现回调函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 声明一个函数类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">cb</span> <span style="color:#66d9ef">func</span>(<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">testCallBack</span>(<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">callBack</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">testCallBack</span>(<span style="color:#ae81ff">2</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;我是回调，x：%d\n&#34;</span>, <span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">testCallBack</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">f</span> <span style="color:#a6e22e">cb</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">callBack</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;我是回调，x：%d\n&#34;</span>, <span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="闭包">闭包<a href="#闭包" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>即匿名函数，是一个“内联”语句或表达式，优越性在于可以直接使用函数内的变量而不必申明</p>
+<p>以下实例中创建了函数<code>getSequence()</code>并返回另一个函数，该函数目的是在闭包中递增<code>i</code>变量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getSequence</span>() <span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">i</span><span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i</span>  
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* nextNumber 为一个函数，函数 i 为 0 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">nextNumber</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">getSequence</span>()  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 调用 nextNumber 函数，i 变量自增 1 并返回 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nextNumber</span>())
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nextNumber</span>())
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nextNumber</span>())
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 创建新的函数 nextNumber1，并查看结果 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">nextNumber1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">getSequence</span>()  
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nextNumber1</span>())
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nextNumber1</span>())
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>闭包函数中的返回值不用谢具体形参名称</p>
+<h3 id="方法">方法<a href="#方法" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>方法就是一个包含了接收者的函数，接收者可以是命名类型或结构体类型的一个值或一个指针，所有给定类型的方法属于该类型的方法集，语法格式为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">variable_name</span> <span style="color:#a6e22e">variable_data_type</span>) <span style="color:#a6e22e">function_name</span>() [<span style="color:#a6e22e">return_type</span>]{
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 函数体*/</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>实例如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;fmt&#34;</span>  
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* 定义结构体 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Circle</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">radius</span> <span style="color:#66d9ef">float64</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c1</span> <span style="color:#a6e22e">Circle</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">c1</span>.<span style="color:#a6e22e">radius</span> = <span style="color:#ae81ff">10.00</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;圆的面积 = &#34;</span>, <span style="color:#a6e22e">c1</span>.<span style="color:#a6e22e">getArea</span>())
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//该 method 属于 Circle 类型对象中的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#a6e22e">Circle</span>) <span style="color:#a6e22e">getArea</span>() <span style="color:#66d9ef">float64</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//c.radius 即为 Circle 类型对象中的属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3.14</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">radius</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">radius</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>go没有面向对象，像常见的java或c++都是编译器隐式的给函数加一个this指针，但在go里这个this指针需要明确指出</p>
+<p>还有就是，当我们没有强制使用指针调用时，go编译器会自动帮我们去指针或解引用来满足接收方法的需求，我们不需要严格遵守这些</p>
+<p>如果在方法里想要改变结构体成员值，需要对方法使用指针</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Circle</span>) <span style="color:#a6e22e">changeRadius</span>(<span style="color:#a6e22e">radius</span> <span style="color:#66d9ef">float64</span>)  {
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">radius</span> = <span style="color:#a6e22e">radius</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>引用类型改变值则需要转指针</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">change</span>(<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Circle</span>, <span style="color:#a6e22e">radius</span> <span style="color:#66d9ef">float64</span>)  {
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">radius</span> = <span style="color:#a6e22e">radius</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="变量作用域">变量作用域<a href="#变量作用域" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>作用域为已声明标识符的常量，类型，变量，函数或包在源码中的作用范围</p>
+<p>可以在三个地方声明</p>
+<ul>
+<li>函数内定义的叫局部变量</li>
+<li>函数外定义的叫全局变量</li>
+<li>函数定义中的变量叫形式参数</li>
+</ul>
+<h3 id="局部变量">局部变量<a href="#局部变量" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>作用域只在函数体内，参数和返回值变量也是局部变量</p>
+<h3 id="全局变量">全局变量<a href="#全局变量" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>函数体外声明的变量，可以在整个包甚至外部包（被导出后使用）</p>
+<p>全局变量与局部变量名称可以相同，但局部变量会被优先考虑</p>
+<h3 id="形式参数">形式参数<a href="#形式参数" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>会作为函数的局部变量使用</p>
+<h3 id="默认值">默认值<a href="#默认值" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数据类型</th>
+<th style="text-align:center">全局变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>int</code></td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>float32</code></td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">pointer</td>
+<td style="text-align:center">nil</td>
+</tr>
+</tbody>
+</table>
+<p>可以用花括号控制变量作用域，花括号中变量是单独作用域，同名变量会覆盖外层（强龙不压地头蛇）</p>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://blog.wizzz.ink/posts/gonote2/">
+                <span class="button__text">Go笔记2</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    
+		<script src="https://utteranc.es/client.js"
+		repo="iku50/iku50.github.io"
+		label="💬"
+		issue-term="title"
+		theme="github-dark-orange"
+		crossorigin="anonymous"
+		async>
+		</script>
+
+<footer class="footer">
+  <div class="footer__inner">
+  
+    
+      <div class="copyright copyright--user">
+        <span>wizzz</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="https://blog.wizzz.ink/assets/main.js"></script>
+<script src="https://blog.wizzz.ink/assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
