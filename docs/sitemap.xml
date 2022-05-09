@@ -2,26 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.wizzz.ink/tags/golang/</loc>
+    <lastmod>2022-05-09T19:32:45+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/posts/gonote4/</loc>
+    <lastmod>2022-05-09T19:32:45+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/posts/</loc>
+    <lastmod>2022-05-09T19:32:45+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/tags/</loc>
+    <lastmod>2022-05-09T19:32:45+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wizzz.ink/</loc>
+    <lastmod>2022-05-09T19:32:45+08:00</lastmod>
+  </url><url>
     <loc>https://blog.wizzz.ink/tags/github/</loc>
     <lastmod>2022-04-29T22:39:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.wizzz.ink/posts/github%E6%96%B0%E6%89%8B%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2022-04-29T22:39:59+08:00</lastmod>
   </url><url>
-    <loc>https://blog.wizzz.ink/posts/</loc>
-    <lastmod>2022-04-29T22:39:59+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.wizzz.ink/tags/</loc>
-    <lastmod>2022-04-29T22:39:59+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.wizzz.ink/</loc>
-    <lastmod>2022-04-29T22:39:59+08:00</lastmod>
-  </url><url>
     <loc>https://blog.wizzz.ink/about/</loc>
     <lastmod>2022-04-27T19:40:32+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.wizzz.ink/tags/golang/</loc>
-    <lastmod>2022-04-27T19:26:25+08:00</lastmod>
   </url><url>
     <loc>https://blog.wizzz.ink/posts/gonote3/</loc>
     <lastmod>2022-04-27T19:26:25+08:00</lastmod>

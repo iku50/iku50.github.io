@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Gonote4 :: Wizzz.ink</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="go笔记4：数组，指针，结构体与切片" />
+<meta name="keywords" content=", " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.wizzz.ink/posts/gonote4/" />
+
+
+
+
+<link rel="stylesheet" href="https://blog.wizzz.ink/assets/style.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="https://blog.wizzz.ink/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="https://blog.wizzz.ink/img/favicon/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Gonote4">
+<meta property="og:description" content="go笔记4：数组，指针，结构体与切片" />
+<meta property="og:url" content="https://blog.wizzz.ink/posts/gonote4/" />
+<meta property="og:site_name" content="Wizzz.ink" />
+
+  <meta property="og:image" content="https://blog.wizzz.ink/">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2022-05-09 19:32:45 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="orange">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Wizzz.ink
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/posts">home</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/posts">home</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://blog.wizzz.ink/posts/gonote4/">Gonote4</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2022-05-09
+        
+      </span>
+    
+    
+      <span class="post-author">:: [Wizzz]</span>
+    
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://blog.wizzz.ink/tags/golang/">golang</a>&nbsp;
+    
+  </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h2 id="数组">数组<a href="#数组" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>具有相同唯一类型的一组已编号且长度固定的数据项类型，可以是任意的原始类型或自定义类型</p>
+<p>可以通过索引来读取</p>
+<h3 id="声明数组">声明数组<a href="#声明数组" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>需要指定元素类型及元素个数，一维数组格式如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">variable_name</span> [<span style="color:#a6e22e">SIZE</span>] <span style="color:#a6e22e">variable_type</span>
+</span></span></code></pre></div><p>实例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">balance</span> [<span style="color:#ae81ff">10</span>] <span style="color:#66d9ef">float32</span>
+</span></span></code></pre></div><h3 id="初始化">初始化<a href="#初始化" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">balance</span> = [<span style="color:#ae81ff">5</span>]<span style="color:#66d9ef">float32</span>{<span style="color:#ae81ff">1000.0</span>, <span style="color:#ae81ff">2.0</span>, <span style="color:#ae81ff">3.4</span>, <span style="color:#ae81ff">7.0</span>, <span style="color:#ae81ff">50.0</span>}
+</span></span></code></pre></div><p>或</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">balance</span> = [<span style="color:#ae81ff">5</span>]<span style="color:#66d9ef">float32</span>{<span style="color:#ae81ff">1000.0</span>, <span style="color:#ae81ff">2.0</span>, <span style="color:#ae81ff">3.4</span>, <span style="color:#ae81ff">7.0</span>, <span style="color:#ae81ff">50.0</span>}
+</span></span></code></pre></div><p>数组长度不确定就用<code>...</code>代替</p>
+<p>如果设置了长度，还可以通过指定下标初始化元素</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">balance</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">5</span>]<span style="color:#66d9ef">float32</span>{<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">2.0</span>,<span style="color:#ae81ff">3</span>:<span style="color:#ae81ff">7.0</span>}
+</span></span></code></pre></div><p>如果忽略了<code>[]</code>中的数字不设置数组大小，go会根据元素个数来设置数组大小</p>
+<p>初始化数组长度后，元素可以不初始化，但未进行数组大小初始化的数组初始化结果元素大小就为多少</p>
+<h3 id="访问数组元素">访问数组元素<a href="#访问数组元素" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>跟其他语言一样</p>
+<h3 id="多维数组">多维数组<a href="#多维数组" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">variable_name</span> [<span style="color:#a6e22e">SIZE1</span>][<span style="color:#a6e22e">SIZE2</span>]<span style="color:#f92672">...</span>[<span style="color:#a6e22e">SIZEN</span>] <span style="color:#a6e22e">variable_type</span>
+</span></span></code></pre></div><p>创建各个维度元素不一致的多维数组</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 创建空的二维数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">animals</span> <span style="color:#f92672">:=</span> [][]<span style="color:#66d9ef">string</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 创建三一维数组，各数组长度不同
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">row1</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;fish&#34;</span>, <span style="color:#e6db74">&#34;shark&#34;</span>, <span style="color:#e6db74">&#34;eel&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">row2</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;bird&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">row3</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;lizard&#34;</span>, <span style="color:#e6db74">&#34;salamander&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 使用 append() 函数将一维数组添加到二维数组中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">animals</span> = append(<span style="color:#a6e22e">animals</span>, <span style="color:#a6e22e">row1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">animals</span> = append(<span style="color:#a6e22e">animals</span>, <span style="color:#a6e22e">row2</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">animals</span> = append(<span style="color:#a6e22e">animals</span>, <span style="color:#a6e22e">row3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 循环输出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">animals</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Row: %v\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">animals</span>[<span style="color:#a6e22e">i</span>])
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em>注：初始化时右括号不能单独一层</em></p>
+<h3 id="向函数传递数组">向函数传递数组<a href="#向函数传递数组" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>需要在函数定义时声明形参为数组</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">void</span> <span style="color:#a6e22e">myFunction</span>(<span style="color:#a6e22e">param</span> [<span style="color:#ae81ff">10</span>]<span style="color:#66d9ef">int</span>){
+</span></span></code></pre></div><p>或</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">void</span> <span style="color:#a6e22e">myFunction</span>(<span style="color:#a6e22e">param</span> []<span style="color:#66d9ef">int</span>){
+</span></span></code></pre></div><p>另外，若数组元素一多，由于其值传递的特性，对内存是个很大的开销，这里就要使用数组指针，但要注意传数组不能借此修改外部数组，但传指针就可能修改了</p>
+<p>go数组作为参数传递的也是副本，函数内修改不改变原来数组</p>
+<p>数组为值，长度是其类型的一部分，在函数参数中是值传递，修改对调用者不可见</p>
+<p>而后面会讲slice（切片）类似于指针传递，函数内修改对调用可见，可以修改外部数据</p>
+<h2 id="指针">指针<a href="#指针" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>指针声明格式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">var_name</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">var</span><span style="color:#f92672">-</span><span style="color:#66d9ef">type</span>
+</span></span></code></pre></div><h3 id="使用指针">使用指针<a href="#使用指针" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<ul>
+<li>定义指针变量</li>
+<li>为指针变量赋值</li>
+<li>访问指针变量中指向地址的值</li>
+</ul>
+<p>在指针类型前加上<code>*</code>就可以获取指针所指向的内容</p>
+<h3 id="空指针">空指针<a href="#空指针" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>当指针定义后没有分配到任何变量时值为<code>nil</code>，即空指针</p>
+<h3 id="指针数组">指针数组<a href="#指针数组" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>声明：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ptr</span> [<span style="color:#a6e22e">MAX</span>]<span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>;
+</span></span></code></pre></div><p><em>注：遍历指针数组时若要用range循环时注意一下</em></p>
+<h3 id="指向指针的指针">指向指针的指针<a href="#指向指针的指针" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>格式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ptr</span> <span style="color:#f92672">**</span>[<span style="color:#66d9ef">type</span>]
+</span></span></code></pre></div><h3 id="指针作为函数参数">指针作为函数参数<a href="#指针作为函数参数" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>允许向函数传递指针，只需要在函数定义参数设置好就行</p>
+<h2 id="结构体">结构体<a href="#结构体" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>可以在不同项定义不同的数据类型</p>
+<p>结构体是由一系列具有相同类型或不同类型的数据构成的数据集合</p>
+<p>定义：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">struct_variable_type</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">member</span> <span style="color:#a6e22e">definition</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">member</span> <span style="color:#a6e22e">definition</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">member</span> <span style="color:#a6e22e">definition</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>一旦定义了结构体类型就能用于变量的声明</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">variable_name</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">structure_variable_type</span> {<span style="color:#a6e22e">value1</span>, <span style="color:#a6e22e">value2</span><span style="color:#f92672">...</span><span style="color:#a6e22e">valuen</span>}
+</span></span></code></pre></div><p>或</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">variable_name</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">structure_variable_type</span> { <span style="color:#a6e22e">key1</span>: <span style="color:#a6e22e">value1</span>, <span style="color:#a6e22e">key2</span>: <span style="color:#a6e22e">value2</span><span style="color:#f92672">...</span>, <span style="color:#a6e22e">keyn</span>: <span style="color:#a6e22e">valuen</span>}
+</span></span></code></pre></div><h3 id="访问结构体成员">访问结构体成员<a href="#访问结构体成员" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>使用<code>.</code>操作符</p>
+<h3 id="结构体作为参数">结构体作为参数<a href="#结构体作为参数" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>也是可以的</p>
+<h3 id="结构体指针">结构体指针<a href="#结构体指针" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>当然也可以了，访问结构体成员是使用<code>.</code>操作符</p>
+<p>在结构体指针中，在其对应的内存地址取成员值时，会变成变成引用传递，这就很爽了，因为如果要写一个修改结构体内值的函数，那么需要将修改后的值返回出来然后重新赋值，但只要用结构体指针就可以直接对其进行修改</p>
+<p><em>结构体属性中首字母大写相当于public，小写相当于private，是相对于包来说的</em></p>
+<h2 id="切片slice">切片（slice）<a href="#切片slice" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>go切片是对数组的抽象</p>
+<p>数组长度不可变，在特定场景就不太适用，go提供了灵活而功能强悍的内置类型切片（动态数组），与数组相比其长度不固定，可以追加元素，追加时可能使其容量增大</p>
+<p>切片实际上是获取了数组的某一部分，len切片&lt;=cap切片&lt;=len数组</p>
+<p>由三部分组成：指向底层数组的指针，len，cap</p>
+<p>声明（即指定一个未指定大小的数组）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">identifier</span> []<span style="color:#66d9ef">type</span>
+</span></span></code></pre></div><p>可以使用make()函数创建切片</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">slice1</span> []<span style="color:#66d9ef">type</span> = make([]<span style="color:#66d9ef">type</span>, <span style="color:#a6e22e">len</span>)
+</span></span></code></pre></div><p>或</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">slice1</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">type</span>, <span style="color:#a6e22e">len</span>)
+</span></span></code></pre></div><p>也可以指定初始容量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>make([]<span style="color:#a6e22e">T</span>, <span style="color:#a6e22e">length</span>, <span style="color:#a6e22e">capacity</span>)
+</span></span></code></pre></div><h3 id="切片初始化">切片初始化<a href="#切片初始化" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>可以如下直接初始化</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span>[] <span style="color:#66d9ef">int</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> } 
+</span></span></code></pre></div><p>或者引用其他数组来初始化切片</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">startIndex</span>:<span style="color:#a6e22e">endIndex</span>] 
+</span></span></code></pre></div><p>表明将arr中从下标<code>startIndex</code>到<code>endIndex-1</code>下的元素创建为一个新的切片</p>
+<p>省略<code>startIndex</code>表示从第一个元素开始，省略<code>endIndex</code>表示一直到最后一个元素</p>
+<p>新切片的大小为<code>endIndex-startIndex</code>，容量为:底层数组容量<code>-startIndex</code></p>
+<h3 id="len和cap函数">len()和cap()函数<a href="#len和cap函数" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>切片可索引，可以由len()方法获取长度</p>
+<p>切片也提供了计算容量的方法cap()测量切片最长可以达到多少</p>
+<h3 id="空nil-切片">空/nil 切片<a href="#空nil-切片" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>一个切片在未初始化之前默认为nil，长度为0，容量为0</p>
+<p>切片还有nil切片和空切片，nil切片意味着指向底层数组的指针为nil，而空切片对应的指针是个实际的地址</p>
+<p>nil切片表示不存在的切片，空切片表示一个空集合，它们用处不一</p>
+<h3 id="切片截取">切片截取<a href="#切片截取" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>可以设置下限及上限来设置截取切片<code>[lower-bound:upper-bound]</code>,实例如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 创建切片 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>}  
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">numbers</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 打印原始切片 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;numbers ==&#34;</span>, <span style="color:#a6e22e">numbers</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 打印子切片从索引1(包含) 到索引4(不包含)*/</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;numbers[1:4] ==&#34;</span>, <span style="color:#a6e22e">numbers</span>[<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">4</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 默认下限为 0*/</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;numbers[:3] ==&#34;</span>, <span style="color:#a6e22e">numbers</span>[:<span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 默认上限为 len(s)*/</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;numbers[4:] ==&#34;</span>, <span style="color:#a6e22e">numbers</span>[<span style="color:#ae81ff">4</span>:])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">numbers1</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">numbers1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 打印子切片从索引  0(包含) 到索引 2(不包含) */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">number2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">numbers</span>[:<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">number2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 打印子切片从索引 2(包含) 到索引 5(不包含) */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">number3</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">numbers</span>[<span style="color:#ae81ff">2</span>:<span style="color:#ae81ff">5</span>]
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">number3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">x</span> []<span style="color:#66d9ef">int</span>){
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;len=%d cap=%d slice=%v\n&#34;</span>,len(<span style="color:#a6e22e">x</span>),cap(<span style="color:#a6e22e">x</span>),<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="append函数和copy函数">append()函数和copy()函数<a href="#append函数和copy函数" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>如果想增加切片容量，就必须创建一个更大的切片并把原分片的内容都拷贝过来</p>
+<p>下面的代码描述了从拷贝切片的copy方法和追加新元素的append方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">numbers</span> []<span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">numbers</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 允许追加空切片 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">numbers</span> = append(<span style="color:#a6e22e">numbers</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">numbers</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 向切片添加一个元素 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">numbers</span> = append(<span style="color:#a6e22e">numbers</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">numbers</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 同时添加多个元素 */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">numbers</span> = append(<span style="color:#a6e22e">numbers</span>, <span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">numbers</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 创建切片 numbers1 是之前切片的两倍容量*/</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">numbers1</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, len(<span style="color:#a6e22e">numbers</span>), (cap(<span style="color:#a6e22e">numbers</span>))<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/* 拷贝 numbers 的内容到 numbers1 */</span>
+</span></span><span style="display:flex;"><span>   copy(<span style="color:#a6e22e">numbers1</span>,<span style="color:#a6e22e">numbers</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">numbers1</span>)  
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">x</span> []<span style="color:#66d9ef">int</span>){
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;len=%d cap=%d slice=%v\n&#34;</span>,len(<span style="color:#a6e22e">x</span>),cap(<span style="color:#a6e22e">x</span>),<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em>使用 <code>append(list,[params])</code>时，会先判断 list的 cap长度是否大于等于<code>len(list)+len([params])</code>如果大于则 cap不变，否则 cap等于<code>max{cap(list),cap[params]}</code></em></p>
+<p>而这种判断的根源，其实是新切片与原切片共用一个底层数组，所以修改时底层数组的值就会改变，原切片或数组的值就被改变了而其实上面就是在判断底层数组能否容纳，不能就创建新的底层数组</p>
+<p><em>使用 <code>copy</code>函数要注意要初始化目标切片的 size，否则无法进行复制</em></p>
+<p><em>由于slice的看似引用传递实则值传递特性，就算能通过其结构中带的指针修改切片数据内容，但使用append进行扩容时，实际改变的是被复制的那个切片长度，对于函数外的切片则没有变化，针对这种情况，只有传切片指针才能进行扩容</em></p>
+<h3 id="函数间传递切片">函数间传递切片<a href="#函数间传递切片" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>因为切片占用内存小，成本低，所以切片特别适用于在数组间传递</p>
+<h2 id="范围range">范围（range）<a href="#范围range" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>用range关键字在for循环中迭代数组，切片，通道（channel），集合（map）的元素，在数组和切片中返回元素的索引和对应的值，在集合中返回key-value对</p>
+<p>实例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//这是我们使用range去求一个slice的和。使用数组跟这个很类似
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">nums</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sum</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">num</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">nums</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">sum</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">num</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;sum:&#34;</span>, <span style="color:#a6e22e">sum</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//在数组上使用range将传入index和值两个变量。上面那个例子我们不需要使用该元素的序号，所以我们使用空白符&#34;_&#34;省略了。有时侯我们确实需要知道它的索引。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">num</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">nums</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;index:&#34;</span>, <span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//range也可以用在map的键值对上。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">kvs</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;a&#34;</span>: <span style="color:#e6db74">&#34;apple&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>: <span style="color:#e6db74">&#34;banana&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">kvs</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s -&gt; %s\n&#34;</span>, <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//range也可以用来枚举Unicode字符串。第一个参数是字符的索引，第二个是字符（Unicode的值）本身。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#e6db74">&#34;go&#34;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">c</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://blog.wizzz.ink/posts/github%E6%96%B0%E6%89%8B%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+                <span class="button__text">Github新手使用教程</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    
+		<script src="https://utteranc.es/client.js"
+		repo="iku50/iku50.github.io"
+		label="💬"
+		issue-term="title"
+		theme="github-dark-orange"
+		crossorigin="anonymous"
+		async>
+		</script>
+
+<footer class="footer">
+  <div class="footer__inner">
+  
+    
+      <div class="copyright copyright--user">
+        <span>wizzz</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="https://blog.wizzz.ink/assets/main.js"></script>
+<script src="https://blog.wizzz.ink/assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
