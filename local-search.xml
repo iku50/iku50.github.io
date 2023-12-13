@@ -4,27 +4,6 @@
   
   
   <entry>
-    <title>golang 面试八股收集</title>
-    <link href="/2023/12/09/golangface/"/>
-    <url>/2023/12/09/golangface/</url>
-    
-    <content type="html"><![CDATA[<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>常见的垃圾回收算法有哪些？</p><ul><li>引用计数<br>每个对象维护一个引用计数，被创建或被赋值给其他对象时引用计数自动加 1，对象被销毁则引用计数减 1，当引用计数为 0 时，对象就可以被回收<ul><li>优点：实现简单，垃圾对象可以很快被回收</li><li>缺点：无法处理循环引用的情况，引用计数的维护和更新需要消耗一定的资源</li></ul></li><li>标记清除<br>从根节点开始遍历所有对象，能到达的对象标记为活跃对象，未被标记的对象则为垃圾对象，最后统一回收所有的垃圾对象<ul><li>优点：可以处理循环引用的情况</li><li>缺点：需要遍历所有的对象，效率较低，需要暂停整个程序的运行（STW：Stop The World）</li></ul></li><li>分代回收<br>将所有的对象分为新生代和老年代，新生代中的对象存活时间较短，老年代中的对象存活时间较长，新老生代的垃圾回收策略不同<ul><li>优点：提高了垃圾回收的效率</li><li>缺点：增加了垃圾回收的复杂度</li></ul></li></ul><p>Go 1.3 使用标记清除，一开始是知道垃圾清理完毕才恢复程序运行，后来将垃圾清理放在 STW 后面，与程序并发执行</p><p>Go 1.5 使用三色标记</p><p>三色标记法是什么？</p><ul><li>白色：暂无对象引用的潜在垃圾，可能被回收</li><li>灰色：活跃对象，需要被扫描，存在指向白色对象的外部指针，垃圾收集器回去扫描这些对象的子对象</li><li>黑色：活跃对象，已经被扫描，包括不存在引用外部指针的对象和根对象可及的对象</li></ul><p>步骤：</p><ol><li>将所有的对象标记为白色</li><li>将根对象标记为灰色，将第一次遍历到的节点标记为灰色</li><li>遍历灰色节点，将灰色节点标记为黑色，将灰色节点的子节点标记为灰色</li><li>重复步骤 3，直到灰色节点为空</li><li>将白色节点回收</li></ol><p>但由于 CPU 的调度，可能出现</p><ol><li>白色对象被黑色对象引用</li><li>灰色对象和可达的白色对象关系被打断</li></ol><p>因此拓展出了两种办法</p><ol><li>强三色不变式：不允许白色对象被黑色对象引用</li><li>弱三色不变式：黑色对象可以引用白色对象，但是白色对象必须是灰色对象的子节点或者其链路上的节点</li></ol><p>于是引入了屏障机制：在程序执行时加一个判断，满足则回调</p><p>为保障栈的效率，屏障只在堆上运行，栈在 GC 后用 STW 的方式重新扫描</p><p>屏障为插入屏障和删除屏障</p><ul><li>插入屏障：用强三色不变式，当黑色对象引用白色对象时，将白色对象标记为灰色对象</li><li>删除屏障：用弱三色不变式，若灰色引用的白色对象被删除，则将白色对象标记为灰色对象</li></ul><p>缺点是精度低，一个对象即使被删除也可能活过这一轮在下一轮被回收</p><p>Go 1.8 使用三色标记加混合写屏障</p><p>混合写屏障是什么？</p><p>实现弱三色不变式</p><ol><li>GC 开始时将栈上的所有可达对象标记为黑色</li><li>GC 时栈上新建的对象标记为黑色</li><li>被删除引用的对象标记为灰色</li><li>被添加引用的对象标记为灰色</li></ol><p>GC的触发时间：</p><ol><li>对内存分配达到控制器计算的堆阈值（初始大小 <code>GOGC</code>），之后要到达上一次 GC 的两倍才会触发 GC</li><li>一定时间间隔触发 GC，由 <code>runtime.forcegcperiod</code> 控制，默认两分钟</li></ol><h2 id="GPM-调度和-CSP-模型"><a href="#GPM-调度和-CSP-模型" class="headerlink" title="GPM 调度和 CSP 模型"></a>GPM 调度和 CSP 模型</h2><p>CSP 模型是什么？</p><ul><li>CSP 模型是一种并发编程模型，通过通信来共享内存，而不是通过共享内存来通信</li></ul><p>GPM 调度是什么？</p><ul><li>GPM 调度是 Go 语言运行时的调度模型，G 代表 Goroutine，P 代表 Processor，M 代表 OS Thread（Machine）</li></ul><p>G：Goroutine，代表一个协程，协程是 Go 语言并发的基本单位，协程是由 Go 语言运行时调度的，协程的调度是非抢占式的，协程的调度由 Go 语言运行时负责，协程的调度是基于协程的主动让出（yield）和主动抢占（preempt）的</p><p>P：Processor，代表一个处理器，处理器是协程的执行者，即 goroutine 的上下文， 包含了一组 goroutine 队列，每个队列与一组优先级关联</p><p>M：OS Thread，代表一个操作系统线程，负责将 Processor 与操作系统线程进行绑定，实现真正的并发执行</p><p>GPM 调度的流程：</p><ol><li>启动<ul><li>程序启动时，系统初始化一组 M 和 P，M 和 P 一一对应，P 会创建一个 goroutine 队列</li></ul></li><li>创建 goroutine<ul><li>当一个 goroutine 被创建时，会被放入一个 P 的 goroutine 队列中</li><li>如果某个 P 的本地队列已满，会将多余的 goroutine 放入全局队列中</li></ul></li><li>运行 goroutine<ul><li>M 会从全局队列中取出一个可运行的 goroutine，如果 M 关联的 P 非空，优先从 P 的本地队列中取出一个可运行的 goroutine，如果 P 的本地队列为空，M 可能从其他 P 的本地队列中偷取一些 goroutine</li><li>M 会将 goroutine 绑定到自己的 P 上，并执行该 goroutine</li></ul></li><li>阻塞和唤醒<ul><li>当 goroutine 阻塞时，P 会将其从运行队列移除</li><li>阻塞的 goroutine 可能会释放关联的 P（P 满了）</li></ul></li></ol><h2 id="channel-原理"><a href="#channel-原理" class="headerlink" title="channel 原理"></a>channel 原理</h2>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>golang</tag>
-      
-      <tag>interview</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>wayland 在 2023 的实际体验</title>
     <link href="/2023/12/06/wayland%20in%202023/"/>
     <url>/2023/12/06/wayland%20in%202023/</url>
