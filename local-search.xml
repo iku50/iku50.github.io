@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>vscode 使用 vim 和输入法</title>
+    <link href="/2023/12/17/vscodevimwithim/"/>
+    <url>/2023/12/17/vscodevimwithim/</url>
+    
+    <content type="html"><![CDATA[<h2 id="vscode-使用-vim-和输入法"><a href="#vscode-使用-vim-和输入法" class="headerlink" title="vscode 使用 vim 和输入法"></a>vscode 使用 vim 和输入法</h2><p>在 vscode 上使用 vim 和输入法是一件比较麻烦的事情，这里记录以下我的解决方法</p><h3 id="插件与环境"><a href="#插件与环境" class="headerlink" title="插件与环境"></a>插件与环境</h3><p>使用 vim 插件和 multi-command 插件</p><p>输入法是 linux 下的 fcitx5，如果是 windows 或 mac，建议安装 <a href="https://github.com/daipeihust/im-select/blob/master/README_CN.md]">im-select</a> 来获得对应的输入法命令行工具</p><p>原理很简单，就是在 vscode 要使用 vim 的 normal 模式时，即按下 esc 键时运行命令行切换到英文输入法</p><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在 vscode 的 settings.json 中添加以下配置</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;multiCommand.commands&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;multiCommand.multiEscape&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;sequence&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-comment">// vim 的 esc</span><br>        <span class="hljs-string">&quot;extension.vim_escape&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-comment">// 开启一个新的终端</span><br>        <span class="hljs-string">&quot;workbench.action.terminal.new&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-string">&quot;workbench.action.terminal.focus&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-punctuation">&#123;</span><br>          <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;workbench.action.terminal.sendSequence&quot;</span><span class="hljs-punctuation">,</span><br>          <span class="hljs-comment">// 切换到英文输入法并退出终端</span><br>          <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;fcitx5-remote -c &amp;&amp; exit\n&quot;</span><br>          <span class="hljs-punctuation">&#125;</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">]</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure><p>接着在 keybindings.json 中添加以下配置</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;escape&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;extension.multiCommand.execute&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;multiCommand.multiEscape&quot;</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;when&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;editorTextFocus &amp;&amp; vim.active&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure><p>然后就可以正常进行切换了，不过这样会有一个问题，就是在 esc 之后会有一个短暂的终端闪现, 不喜欢这个效果的可以将终端通过配置隐藏</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>vscode</tag>
+      
+      <tag>vim</tag>
+      
+      <tag>inputmethod</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>wayland 在 2023 的实际体验</title>
     <link href="/2023/12/06/wayland%20in%202023/"/>
     <url>/2023/12/06/wayland%20in%202023/</url>
