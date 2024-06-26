@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="iku50">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="关于 gorm 框架进行 mysql CRUD 的使用心得关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率，复杂查询还是手写 sql 比较好。综合一下还是觉得 java 中 MyBatis plus 负责简单查询，MyB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gorm-note">
+<meta property="og:url" content="https://iku50.github.io/2024/06/26/gorm-note/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于 gorm 框架进行 mysql CRUD 的使用心得关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率，复杂查询还是手写 sql 比较好。综合一下还是觉得 java 中 MyBatis plus 负责简单查询，MyB">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-26T06:08:56.000Z">
+<meta property="article:modified_time" content="2024-06-26T06:28:37.849Z">
+<meta property="article:author" content="iku50">
+<meta property="article:tag" content="gorm">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="orm">
+<meta property="article:tag" content="database">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>gorm-note - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"iku50.github.io","root":"/","version":"1.9.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>iku50&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="gorm-note"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-26 14:08" pubdate>
+          2024年6月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">gorm-note</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="关于-gorm-框架进行-mysql-CRUD-的使用心得"><a href="#关于-gorm-框架进行-mysql-CRUD-的使用心得" class="headerlink" title="关于 gorm 框架进行 mysql CRUD 的使用心得"></a>关于 gorm 框架进行 mysql CRUD 的使用心得</h2><p>关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。<br>对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率，复杂查询还是手写 sql 比较好。<br>综合一下还是觉得 java 中 MyBatis plus 负责简单查询，MyBatis 手写 sql 复杂查询的模式更好一些。<br>至于多表操作，其实有以下几个方案：</p>
+<ol>
+<li>冗余字段或其他存储（redis 等）：其实这个最快，如果可以通过冗余一两个字段完成操作最好。</li>
+<li>本地多次单表查询：想提前返回错误或者要进行检查。</li>
+<li>join：性能其实相比本地多次单表查因为网络IO更快。但要注意较容易慢 sql。<br>实际业务进行选择，尽量避免三张表及以上的多表操作。<br>关于 join 还有很多优化策略，但这篇重点不是这个。</li>
+</ol>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>为了更好的使用 gorm，省去简单查询的重复编写是不可少的一步，可以使用 gorm-gen 负责生成代码，但有时会对生成的代码并不满意（比如方法实现上想做出调整），可以参照我下面结合泛型给出的例子：<br>单表查询的泛型，具体步骤如下：<br>定义类型限制的 interface，类似于下面这样</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Model <span class="hljs-keyword">interface</span> &#123;<br>	TableName() <span class="hljs-type">string</span><br>	GetID() <span class="hljs-type">int64</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>接着针对该 Model，定义相关的单表 Dao 接口和结构，方法实现</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// Interface of Dao[Model]</span><br><span class="hljs-keyword">type</span> IDao[M Model <span class="hljs-keyword">interface</span> &#123;  <br>    Create(ctx context.Context, m M) <span class="hljs-type">error</span><br>    <span class="hljs-comment">//...</span><br>&#125;<br><br><span class="hljs-comment">// Struct of Dao[Model]</span><br><span class="hljs-keyword">type</span> MDao[T Model <span class="hljs-keyword">struct</span> &#123;  <br>    *gorm.DB  <br>&#125;<br><br><span class="hljs-comment">// Create Method of MDao</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(m *MDao[T])</span></span> Create(ctx context.Context, t T) <span class="hljs-type">error</span> &#123;  <br>    r := m.WithContext(ctx).Table(t.TableName()).Clauses(  <br>       clause.OnConflict&#123;  <br>          DoNothing: <span class="hljs-literal">true</span>,  <br>       &#125;).  <br>       Create(&amp;t)  <br>    <span class="hljs-keyword">return</span> r.Error  <br>&#125;<br><br><span class="hljs-comment">//...</span><br></code></pre></td></tr></table></figure>
+<p>用 MDao 对 IDao 进行实现相关方法完成。<br>而对于具体使用而言，我们可以定义一个多表接口 Dao</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Dao <span class="hljs-keyword">struct</span> &#123;  <br>    ProductDao      gormer.IDao[*model.Product]  <br>    OrderDao        gormer.IDao[*model.BusinessOrder]<br>    <span class="hljs-comment">// 这里可以对 DB 做一些直接操作的接口，比如复杂查询或者事务</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上面只是个简单的例子，实际业务中还要看情况选择使用。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="建表规范"><a href="#建表规范" class="headerlink" title="建表规范"></a>建表规范</h3><p>建表规范不同，其中要注意的几点是：</p>
+<ul>
+<li>主键字段</li>
+<li>created_at，updated_at，deleted_at 等字段</li>
+<li>valid 字段</li>
+<li>CHARSET 是 utf8 还是 utf8mb4</li>
+<li>注释</li>
+</ul>
+<h3 id="注意零值"><a href="#注意零值" class="headerlink" title="注意零值"></a>注意零值</h3><p>注意数据库中不要规定任何值为 0 的数据为有实际意义的值，其作为数值使用的数值型类型，比如类似于 enum 使用的字段，因为如果在 gorm 的插入或修改中定义某值为 0，gorm 会认为该值不需要插入或修改，在某些情况下这样可能酿成大错。<br>如果想插入或更新零值，可以使用诸如 <code>&quot;0&quot;</code> 的做法。</p>
+<h3 id="对象返回"><a href="#对象返回" class="headerlink" title="对象返回"></a>对象返回</h3><p>首先，永远不要返回双 nil，因为我们往往只检查 err。<br>对于对象的一对一关系，父子关系等等：</p>
+<ul>
+<li>一对一：返回与主对象有父关系的所有数据，他们为对象提供了基本上下文</li>
+<li>一对多：知道子关系数量有限时才返回子关系</li>
+</ul>
+<h3 id="列表或搜寻"><a href="#列表或搜寻" class="headerlink" title="列表或搜寻"></a>列表或搜寻</h3><p>我们需要实现一个 Filter 结构对结果进行过滤，分页等等</p>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>应该确定的是，对逻辑而言，如果可以保证每一个函数调用都是一个独立的事务，世界会变得更美好。当然世界肯定不是完美的。<br>同时，应该设计事务平铺的机制以支持在 service 层操作被视为单独的事务。</p>
+<h3 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h3><p>我个人使用的规范是：对于 ByA ，A 为 ID 时不加该后缀，对于增删改操作，后缀 <code>Batch</code> 代表批量进行</p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h3 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h3><p>虽然查找上一般都能直接查找全部数据，但 <code>Select</code> 方法是减少查询时间下必须的。</p>
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go">subQuery := db.Select(<span class="hljs-string">&quot;AVG(age)&quot;</span>).Where(<span class="hljs-string">&quot;name LIKE ?&quot;</span>, <span class="hljs-string">&quot;name%&quot;</span>).Table(<span class="hljs-string">&quot;users&quot;</span>)  <br>db.Select(<span class="hljs-string">&quot;AVG(age) as avgage&quot;</span>).Group(<span class="hljs-string">&quot;name&quot;</span>).Having(<span class="hljs-string">&quot;AVG(age) &gt; (?)&quot;</span>, subQuery).Find(&amp;results)<br><span class="hljs-comment">// 或者在 Table 中直接使用，相当于 sql 的 from</span><br>db.Table(<span class="hljs-string">&quot;(?) as u&quot;</span>, db.Model(&amp;User&#123;&#125;).Select(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>)).Where(<span class="hljs-string">&quot;age = ?&quot;</span>, <span class="hljs-number">18</span>).Find(&amp;User&#123;&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="查找或创建"><a href="#查找或创建" class="headerlink" title="查找或创建"></a>查找或创建</h3><p>使用 <code>Attrs().FirstOrCreate()</code> 或者使用 <code>Assign().FirstOrCreate()</code> 两者的区别是前者在找到后就不会使用 <code>Attrs</code> 中的属性，而后者即使找到也会使用 <code>Assign</code> 中的属性进行更新。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">db.Where(User&#123;Name: <span class="hljs-string">&quot;non_existing&quot;</span>&#125;).Attrs(User&#123;Age: <span class="hljs-number">20</span>&#125;).FirstOrInit(&amp;user)<br></code></pre></td></tr></table></figure>
+<h3 id="索引提示"><a href="#索引提示" class="headerlink" title="索引提示"></a>索引提示</h3><p>对查询语句提示其应该使用哪个索引</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">db.Clauses(hints.UseIndex(<span class="hljs-string">&quot;idx_user_name&quot;</span>)).Find(&amp;User&#123;&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="迭代处理"><a href="#迭代处理" class="headerlink" title="迭代处理"></a>迭代处理</h3><p>使用迭代处理，可以比较轻易的实现树形结构查询等复杂查询情况</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go">rows, err := db.Model(&amp;User&#123;&#125;).Where(<span class="hljs-string">&quot;name = ?&quot;</span>, <span class="hljs-string">&quot;jinzhu&quot;</span>).Rows()  <br><span class="hljs-keyword">defer</span> rows.Close()  <br>  <br><span class="hljs-keyword">for</span> rows.Next() &#123;  <br>  <span class="hljs-keyword">var</span> user User  <br>  <span class="hljs-comment">// ScanRows 扫描每一行进结构体  </span><br>  db.ScanRows(rows, &amp;user)  <br>  <span class="hljs-comment">// 对每一个 User 进行操作  </span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>下面是一个树形结构查询例子</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go">trees := []model.CategoryTree&#123;&#125;<br>rows, err := db.Table(TableNameCategory).Where(<span class="hljs-string">&quot;root = ?&quot;</span>,<span class="hljs-number">1</span>)Rows()<br><span class="hljs-keyword">defer</span> rows.Close()<br><br>treeSearch<br><span class="hljs-keyword">for</span> rows.Next() &#123;<br>	<span class="hljs-keyword">var</span> c model.Category<br>	db.ScanRows(rows, &amp;c)<br>	trees = <span class="hljs-built_in">append</span>(trees, model.CategoryTree&#123;<br>		Value: c<br>	&#125;)<br>	rows,<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="批量查询"><a href="#批量查询" class="headerlink" title="批量查询"></a>批量查询</h3><p>使用 <code>FindInBatches</code> 进行批量查询，批量查询应该使用事务进行处理。</p>
+<h3 id="单列查询"><a href="#单列查询" class="headerlink" title="单列查询"></a>单列查询</h3><p>使用 <code>Pluck</code> 方法进行单列查询进切片中</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> ages []<span class="hljs-type">int64</span>  <br>db.Model(&amp;User&#123;&#125;).Pluck(<span class="hljs-string">&quot;age&quot;</span>, &amp;ages)<br></code></pre></td></tr></table></figure>
+<h3 id="自定义查询函数"><a href="#自定义查询函数" class="headerlink" title="自定义查询函数"></a>自定义查询函数</h3><p>如分页函数等对 pageSize，page 等等进行检查，使用 <code>Scopes</code> 完成类似于方法的定义更有利于规范。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Paginate</span><span class="hljs-params">(pageSize, page <span class="hljs-type">int</span>)</span></span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(db *gorm.DB)</span></span> *gorm.DB &#123;  <br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(db *gorm.DB)</span></span> *gorm.DB &#123;  <br>       <span class="hljs-keyword">if</span> page &lt;= <span class="hljs-number">0</span> &#123;  <br>          page = <span class="hljs-number">1</span>  <br>       &#125;  <br>       <span class="hljs-keyword">switch</span> &#123;  <br>       <span class="hljs-keyword">case</span> pageSize &gt; <span class="hljs-number">100</span>:  <br>          pageSize = <span class="hljs-number">100</span>  <br>       <span class="hljs-keyword">case</span> pageSize &lt;= <span class="hljs-number">0</span>:  <br>          pageSize = <span class="hljs-number">10</span>  <br>       &#125;  <br>  <br>       offset := (page - <span class="hljs-number">1</span>) * pageSize  <br>       fmt.Println(offset, pageSize)  <br>       <span class="hljs-keyword">return</span> db.Limit(pageSize).Offset(offset)  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="分页相关"><a href="#分页相关" class="headerlink" title="分页相关"></a>分页相关</h3><p>首先，如果需要使用非唯一性索引分页排序，需要搭配唯一性索引，否则无法确保一致性。同时也需要确定非唯一性索引是否是联合索引。如果是，在中间以最左匹配原则加入联合索引的其他键可以进一步优化效率。<br>大分页下我们需要进行的查询如果使用非主键索引，需要进行多次回表效率极低，这里可以用延迟关联+覆盖索引实现高效分页查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> contacts          <span class="hljs-comment">-- 想要展示给用户的完整数据。</span><br>    <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> (                <span class="hljs-comment">-- &quot;延迟关联&quot;。</span><br>        <span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> contacts <span class="hljs-comment">-- 使用快速索引进行分页。</span><br>            <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> id<br>            limit <span class="hljs-number">15</span> <span class="hljs-keyword">offset</span> <span class="hljs-number">150000</span><br>    ) <span class="hljs-keyword">as</span> tmp <span class="hljs-keyword">using</span>(id)<br><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> id                     <span class="hljs-comment">-- 对单个结果页进行排序。</span><br></code></pre></td></tr></table></figure>
+<p>综合以上，分页在 gorm 的实现应该是这样的：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs go">r := ds.Table(model.TableNameProduct).Select(<span class="hljs-string">&quot;product.id&quot;</span>, <span class="hljs-string">&quot;name&quot;</span>).  <br>    Joins(<span class="hljs-string">&quot;INNER JOIN (?) as tmp ON tmp.id = product.id&quot;</span>,  <br>       ds.Table(model.TableNameProduct).Select(<span class="hljs-string">&quot;id&quot;</span>).  <br>          Where(<span class="hljs-string">&quot;valid = ? and gem_valid = ?&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>).  <br>          Count(&amp;count).Limit(pageSize).Offset(page).  <br>          Order(<span class="hljs-string">&quot;id desc&quot;</span>), model.TableNameProduct).  <br>    Order(<span class="hljs-string">&quot;id desc&quot;</span>).Find(&amp;products)<br></code></pre></td></tr></table></figure>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>插入可以分为几种类型，最简单的单次插入，以及批量插入，树形结构插入，插入或修改（upsert）等等。</p>
+<h3 id="单次插入"><a href="#单次插入" class="headerlink" title="单次插入"></a>单次插入</h3><p>如下代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">res := ds.WithContext(ctx).Table(model.TableNameApp).Create(&amp;m)<br></code></pre></td></tr></table></figure>
+<p>基本上只需要使用 <code>Create</code> 即可，这里也可以使用 <code>Save</code> ，其会将所有字段（包括零值字段）插入，但一般来说在良好的数据库定义和上文对零值的注意下并不需要，且对于某些比如 <code>created_ad</code> 等需要在数据库中使用 default 进行维护等字段，<code>Save</code> 就有些不实用了。</p>
+<h3 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h3><p>使用 <code>CreatedInBatched</code> 方法。</p>
+<h3 id="创建或更新"><a href="#创建或更新" class="headerlink" title="创建或更新"></a>创建或更新</h3><p>我们经常需要预计到创建或更新的情况，即唯一性约束被触犯时，我们两种应对方法（返回或者更新原值），这两种都可以用 <code>gorm</code> 的 <code>Clauses</code> 方法解决，如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go">ds.WithContext(ctx).Table(model.TableNameGoods).Clauses(  <br>   clause.OnConflict&#123;  <br>      Columns:   []clause.Column&#123;&#123;Name: <span class="hljs-string">&quot;name&quot;</span>&#125;&#125;,  <br>      DoUpdates: clause.AssignmentColumns([]<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;desc&quot;</span>,<span class="hljs-string">&quot;info&quot;</span>&#125;),  <br>   &#125;).Create(&amp;good)<br></code></pre></td></tr></table></figure>
+<p>这里的 <code>OnConflict</code> 中有几种像 <code>DoUpdates</code> 这样的解决方案，分别是 <code>DoUpdates</code>，<code>DoNothing</code> 和 <code>UpdateAll</code> ，后两种是布尔值，只需说明是否需要进行此过程即可，<code>Columns</code> 中是被冒犯到的唯一性约束。<br>实际上，<code>Clauses</code> 还有其他妙用。</p>
+<h3 id="树形结构插入"><a href="#树形结构插入" class="headerlink" title="树形结构插入"></a>树形结构插入</h3><p>树形结构插入需要注意</p>
+<ul>
+<li>子节点往往需要父节点的 ID 作为 <code>parent_id</code>，这就意味着父节点的插入一定要在子节点之前。</li>
+<li>对于一棵较大的树而言，我们需要用批量插入的形式来尽量减少 sql 的次数。这就意味着深度优先插入劣于广度优先（广度优先可以一次性返回）<br>也就时说，我们可以将树形结构插入分成这样的几个步骤：</li>
+</ul>
+<ol>
+<li>定义插入过程，这里可以用匿名函数。</li>
+<li>定义广度优先算法，更新当前层级和下一需要进行更新的层级。</li>
+<li>使用事务，将上面的插入过程和广度优先更新层级的过程统合。<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// 定义插入过程</span><br><span class="hljs-keyword">var</span> create <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(goods *[]model.Good)</span></span> <span class="hljs-type">error</span>  <br>create = <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(goods *[]model.Auth)</span></span> <span class="hljs-type">error</span> &#123;  <br>    <span class="hljs-comment">// 插入过程</span><br>&#125;  <br><br><span class="hljs-comment">// 定义广度优先过程</span><br>nextLevel := <span class="hljs-built_in">make</span>([]model.GoodTree, <span class="hljs-number">0</span>)  <br>creates := <span class="hljs-built_in">make</span>([]model.Good, <span class="hljs-number">0</span>)  <br>  <br><span class="hljs-keyword">var</span> getLevel <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(goodtree *[]model.GoodTree)</span></span>  <br>getLevel = <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(goods *[]model.GoodTree)</span></span> &#123;  <br>    nextLevel = <span class="hljs-built_in">make</span>([]model.GoodTree, <span class="hljs-number">0</span>)  <br>    creates = <span class="hljs-built_in">make</span>([]model.Good, <span class="hljs-number">0</span>)  <br>    <span class="hljs-keyword">for</span> _, v := <span class="hljs-keyword">range</span> *goodtree &#123;  <br>       creates = <span class="hljs-built_in">append</span>(creates, v.Value)  <br>       <span class="hljs-keyword">for</span> _, nv := <span class="hljs-keyword">range</span> v.Children &#123;  <br>	      <span class="hljs-comment">// 要注意的是这里因为插入完成所以 v.Value.ID 在这时候就存在了</span><br>          nv.Value.ParentID = v.Value.ID  <br>          nextLevel = <span class="hljs-built_in">append</span>(nextLevel, *nv)  <br>       &#125;    <br>    &#125;  <br>&#125;  <br><br><span class="hljs-comment">// 使用事务进行实际更新</span><br>tx := ds.DB.WithContext(ctx).Begin()  <br><span class="hljs-keyword">if</span> tx.Error != <span class="hljs-literal">nil</span> &#123;  <br>    <span class="hljs-keyword">return</span> errors.WithStack(tx.Error)  <br>&#125;  <br><br>getLevel(data)  <br><span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(creates) &gt; <span class="hljs-number">0</span> &#123;  <br>    err = create(&amp;creates)  <br>    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;  <br>       tx.Rollback()  <br>       <span class="hljs-keyword">return</span> errors.WithStack(err)  <br>    &#125;  <br>    getLevel(&amp;nextLevel)  <br>&#125;  <br><span class="hljs-keyword">return</span> tx.Commit().Error<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>一般都不真删除而是 update 逻辑删除相关的字段。</p>
+<h4 id="逻辑删除"><a href="#逻辑删除" class="headerlink" title="逻辑删除"></a>逻辑删除</h4><p>逻辑删除基本是实际业务中必备的。<br>逻辑删除时针对可能影响唯一性约束时，可以有三种解决方案：</p>
+<ul>
+<li>将删除标记设置默认值(例如 0 )，将唯一字段与删除标记添加唯一键约束。当某一记录需要删除时，将删除标记置为 NULL。<br>  由于 NULL 不会和其他字段有组合唯一键的效果，所以当记录被删除时(删除标记被置为 NULL 时)，解除了唯一键的约束。此外该方法能很好地解决批量删除的问题(只要置为 NULL 就完事了)，消耗的空间也并不多( 1 位 + 联合索引)。 但 NULL 本身就可能出现问题。 </li>
+<li>将删除标记更新为主键，这样同样保证了唯一约束字段和删除标记组合索引的唯一性。</li>
+<li>引入 <code>deleted_at</code> 字段，和唯一字段组成联合唯一索引，进行逻辑删除时同步更新。<br>最后一种解决方式基本是可以保证不会出现什么问题的<br>引入 gorm 自带的软删除机制通过<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> User <span class="hljs-keyword">struct</span> &#123; <br>	ID <span class="hljs-type">int</span> Deleted <br>	gorm.DeletedAt <br>	Name <span class="hljs-type">string</span> <br>&#125;<br></code></pre></td></tr></table></figure>
+查找被软删除的记录可以通过 <code>Unscoped</code> 解决<br>在上文中提到的最后一种和唯一字段组成联合唯一索引的方法，可以通过如下代码进行支持<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;gorm.io/plugin/soft_delete&quot;</span> <br><br><span class="hljs-keyword">type</span> User <span class="hljs-keyword">struct</span> &#123; <br>	ID <span class="hljs-type">uint</span> <br>	Name <span class="hljs-type">string</span> <span class="hljs-string">`gorm:&quot;uniqueIndex:udx_name&quot;`</span> <br>	DeletedAt soft_delete.DeletedAt <span class="hljs-string">`gorm:&quot;uniqueIndex:udx_name&quot;`</span> <br>&#125;<br></code></pre></td></tr></table></figure>
+<code>gorm.io/plugin/soft_delete</code> 还提供了上文的删除标记方法：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;gorm.io/plugin/soft_delete&quot;</span> <br><br><span class="hljs-keyword">type</span> User <span class="hljs-keyword">struct</span> &#123; <br>	ID <span class="hljs-type">uint</span> <br>	Name <span class="hljs-type">string</span> <br>	IsDel soft_delete.DeletedAt <span class="hljs-string">`gorm:&quot;softDelete:flag&quot;`</span> <br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/gorm/" class="print-no-link">#gorm</a>
+      
+        <a href="/tags/go/" class="print-no-link">#go</a>
+      
+        <a href="/tags/orm/" class="print-no-link">#orm</a>
+      
+        <a href="/tags/database/" class="print-no-link">#database</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>gorm-note</div>
+      <div>https://iku50.github.io/2024/06/26/gorm-note/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>iku50</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/06/wayland%20in%202023/" title="wayland 在 2023 的实际体验">
+                        <span class="hidden-mobile">wayland 在 2023 的实际体验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
