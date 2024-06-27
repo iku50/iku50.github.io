@@ -232,7 +232,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/06/26/raft/" target="_self">
         <div>
-          关于用 go 实现一个由 raft 分布式一致性协议和 bitcask 存储模型搭建的分布式键值存储数据库。 raft实现上，raft 的实现来自于 MIT 6.824 课程实践 lab 的调整。主要集中于内部调用方式上用 grpc 协议取代了该 lab 原有的 channel 模拟，以及对于命令实现的调整。命令应被传入当前的 leader 处，在这里由一个 subscriber 的机制来完成。该
+          关于用 go 实现一个由 raft 分布式一致性协议和 bitcask 存储模型搭建的分布式键值存储数据库。 raftraft 的实现来自于 MIT 6.824 课程实践 lab 的调整。主要集中于  内部调用方式上用 grpc 协议取代了该 lab 原有的 channel 模拟。 对于命令实现的调整。  命令应被传入当前的 leader 处，在这里由一个 subscriber 的机制来完成。该
         </div>
       </a>
 
