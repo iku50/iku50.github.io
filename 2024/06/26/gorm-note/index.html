@@ -16,15 +16,15 @@
   <meta name="author" content="iku50">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关于 gorm 框架进行 mysql CRUD 的使用心得关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率，复杂查询还是手写 sql 比较好。综合一下还是觉得 java 中 MyBatis plus 负责简单查询，MyB">
+    <meta name="description" content="关于 gorm 框架进行 mysql CRUD 的使用心得还是直接写 sql 好，用代码生成或者泛型整一些单表简单操作，复杂操作用 sqlx 这样的 sql 框架写就好。 关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gorm-note">
 <meta property="og:url" content="https://iku50.github.io/2024/06/26/gorm-note/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="关于 gorm 框架进行 mysql CRUD 的使用心得关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率，复杂查询还是手写 sql 比较好。综合一下还是觉得 java 中 MyBatis plus 负责简单查询，MyB">
+<meta property="og:description" content="关于 gorm 框架进行 mysql CRUD 的使用心得还是直接写 sql 好，用代码生成或者泛型整一些单表简单操作，复杂操作用 sqlx 这样的 sql 框架写就好。 关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-26T06:08:56.000Z">
-<meta property="article:modified_time" content="2024-06-26T06:28:37.849Z">
+<meta property="article:modified_time" content="2024-07-05T08:03:37.142Z">
 <meta property="article:author" content="iku50">
 <meta property="article:tag" content="gorm">
 <meta property="article:tag" content="go">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2.3k 字
         
       </span>
     
@@ -276,7 +276,10 @@
             
               <div class="markdown-body">
                 
-                <h2 id="关于-gorm-框架进行-mysql-CRUD-的使用心得"><a href="#关于-gorm-框架进行-mysql-CRUD-的使用心得" class="headerlink" title="关于 gorm 框架进行 mysql CRUD 的使用心得"></a>关于 gorm 框架进行 mysql CRUD 的使用心得</h2><p>关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。<br>对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率，复杂查询还是手写 sql 比较好。<br>综合一下还是觉得 java 中 MyBatis plus 负责简单查询，MyBatis 手写 sql 复杂查询的模式更好一些。<br>至于多表操作，其实有以下几个方案：</p>
+                <h2 id="关于-gorm-框架进行-mysql-CRUD-的使用心得"><a href="#关于-gorm-框架进行-mysql-CRUD-的使用心得" class="headerlink" title="关于 gorm 框架进行 mysql CRUD 的使用心得"></a>关于 gorm 框架进行 mysql CRUD 的使用心得</h2><p>还是直接写 sql 好，用代码生成或者泛型整一些单表简单操作，复杂操作用 sqlx 这样的 sql 框架写就好。</p>
+<p>关于 ORM 框架，需要注意其利弊兼有的特点，其虽可以帮助我们简化一些简单 sql 操作，做一些辅助检查，但性能低，复杂查询表达不如直接使用 sql 的缺点是存在的。<br>对于简单查询，使用 ORM 框架是不错的，但综合性能和编写效率，复杂查询还是手写 sql 比较好。</p>
+<p>综合一下还是觉得 java 中 MyBatis plus 负责简单查询，MyBatis 手写 sql 复杂查询的模式更好一些。</p>
+<p>至于多表操作，其实有以下几个方案：</p>
 <ol>
 <li>冗余字段或其他存储（redis 等）：其实这个最快，如果可以通过冗余一两个字段完成操作最好。</li>
 <li>本地多次单表查询：想提前返回错误或者要进行检查。</li>
